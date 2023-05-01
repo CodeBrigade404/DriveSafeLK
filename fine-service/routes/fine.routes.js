@@ -68,29 +68,30 @@ router.patch("/:id", getFine, async (req, res) => {
     }
 });
 
-// Delete one fine
 router.delete("/:id", getFine, async (req, res) => {
-    try {
-        await res.fine.remove();
-        res.json({ message: "Deleted fine" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+  try {
+    await Fine.deleteOne({ _id: res.fine._id });
+    res.json({ message: "Deleted fine" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 async function getFine(req, res, next) {
-    let fine;
-    try {
-        fine = await Fine.findById(req.params.id);
-        if (fine == null) {
-            return res.status(404).json({ message: "Cannot find fine" });
-        }
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
+  try {
+    const fine = await Fine.findById(req.params.id);
+    if (!fine) {
+      return res.status(404).json({ message: "Fine not found" });
     }
     res.fine = fine;
     next();
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 module.exports = router;
+
+
+
 
