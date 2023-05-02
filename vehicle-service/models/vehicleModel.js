@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const vehicleScheme = new mongoose.Schema(
   {
-    regno: {
+    regNo: {
       type: String,
       required: [true, "Register Number can't be blank"],
       unique: true,
     },
-    chassisNo: {
+    chassiNo: {
       type: String,
       required: [true, "Chassis Number can't be blank"],
       unique: true,
@@ -32,7 +32,7 @@ const vehicleScheme = new mongoose.Schema(
       required: [true, " year Of Manufacture can't be blank"],
     },
     vehicleOwners: {
-      type: String,
+      type: [String],
       required: [true, " vehicle Owners can't be blank"],
     },
     status: {
