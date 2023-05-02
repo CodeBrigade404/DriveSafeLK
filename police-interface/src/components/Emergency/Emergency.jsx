@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 export default function Emergency() {
   return (
     <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}>
-      <Typography variant='h4'>Dashboard</Typography>
+      <Typography variant='h4'>Emergency</Typography>
     </Box>
   );
 }

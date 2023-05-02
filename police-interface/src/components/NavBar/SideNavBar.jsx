@@ -15,6 +15,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import WarningIcon from "@mui/icons-material/Warning";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
+import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
   const iconMap = {
@@ -22,7 +23,7 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
     Analytics: <AnalyticsIcon />,
     "Pay Fines": <PaymentIcon />,
     "Find Vehicle": <FindInPageIcon />,
-    "Number Plate Recognition": <CameraAltIcon />,
+    "Recognitions": <CameraAltIcon />,
     Reports: <DescriptionIcon />,
     Emergency: <WarningIcon />,
     Licenses: <BadgeIcon />,
@@ -36,30 +37,24 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}>
       <List>
-        {/* {[
-          { text: "Dashboard", route: "/" },
+        {[
+          { text: "Dashboard", route: "/dashboard" },
           { text: "Analytics", route: "/analytics" },
           { text: "Pay Fines", route: "/payfine" },
-          // ...
+          { text: "Find Vehicle", route: "/vehicle" },
+          { text: "Recognitions", route: "/recognitions" },
+          { text: "Reports", route: "/reports" },
+          { text: "Emergency", route: "/emergency" },
+          { text: "Licenses", route: "/licenses" },
+          { text: "Complaints", route: "/complaints" },
         ].map((item) => (
           <ListItem key={item.text} disablePadding>
-            <Link to={item.route} style={{ textDecoration: "none", color: "inherit" }}>
-              <ListItemButton sx={{ "&:hover": { backgroundColor: "#c2c2c2" } }}>
-                <ListItemIcon>{iconMap[item.text]}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        ))} */}
-        {[
-          { text: "Dashboard", route: "/" },
-          { text: "Analytics", route: "/analytics" },
-          { text: "Pay Fines", route: "/payfine" },
-        ].map((text) => (
-          <ListItem key={text.text} disablePadding>
-            <ListItemButton sx={{ "&:hover": { backgroundColor: "#c2c2c2" } }}>
-              <ListItemIcon>{iconMap[text.text]}</ListItemIcon>
-              <ListItemText primary={text.text} />
+            <ListItemButton
+              component={Link}
+              to={item.route}
+              sx={{ "&:hover": { backgroundColor: "#c2c2c2" } }}>
+              <ListItemIcon>{iconMap[item.text]}</ListItemIcon>
+              <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}

@@ -1,5 +1,11 @@
 import React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
-export default function Payfine() {
-  return <div>Payfine</div>;
+export default function PayFine() {
+  return (
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}>
+      <Typography variant='h4'>Pay Fine</Typography>
+    </Box>
+  );
 }
