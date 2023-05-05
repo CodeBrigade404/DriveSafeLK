@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
+import { useTheme } from "@mui/material/styles";
 const cards = [
   {
     key: 1,
@@ -54,6 +54,7 @@ const cards = [
 ];
 
 export default function Album() {
+  const theme = useTheme();
   return (
     <main>
       <Box
@@ -90,6 +91,45 @@ export default function Album() {
       <Container sx={{ py: 10 }}>
         <Grid container spacing={4}>
           {cards.map((card) => (
+            <Grid item key={card.key} xs={12} md={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.25)",
+                }}>
+                <CardMedia
+                  component='video'
+                  src={card.image}
+                  alt='random'
+                  sx={{
+                    width: 270,
+                    height: 170,
+                    [theme.breakpoints.down("sm")]: {
+                      width: 200,
+                      height: 120,
+                    },
+                  }}
+                />
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography
+                    gutterBottom
+                    variant='h6'
+                    align='center'
+                    fontFamily={"Roboto"}
+                    fontWeight={"bold"}>
+                    {card.heading}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      {/* <Container sx={{ py: 10 }}>
+        <Grid container spacing={4}>
+          {cards.map((card) => (
             <Grid item key={card.key} xs={16} md={3}>
               <Card
                 sx={{
@@ -117,7 +157,7 @@ export default function Album() {
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Container> */}
     </main>
   );
 }
