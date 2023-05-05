@@ -15,15 +15,17 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import WarningIcon from "@mui/icons-material/Warning";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
   const iconMap = {
     Dashboard: <DashboardIcon />,
+    "Citizen Registration": <HowToRegIcon />,
     Analytics: <AnalyticsIcon />,
     "Pay Fines": <PaymentIcon />,
     "Find Vehicle": <FindInPageIcon />,
-    "Recognitions": <CameraAltIcon />,
+    Recognitions: <CameraAltIcon />,
     Reports: <DescriptionIcon />,
     Emergency: <WarningIcon />,
     Licenses: <BadgeIcon />,
@@ -39,6 +41,7 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
       <List>
         {[
           { text: "Dashboard", route: "/dashboard" },
+          { text: "Citizen Registration", route: "/register" },
           { text: "Analytics", route: "/analytics" },
           { text: "Pay Fines", route: "/payfine" },
           { text: "Find Vehicle", route: "/vehicle" },
