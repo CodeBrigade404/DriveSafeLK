@@ -11,9 +11,9 @@ import Complaint from "./components/Complaint/Complaint";
 import Emergency from "./components/Emergency/Emergency";
 import Licenses from "./components/Licenses/Licenses";
 import Footer from "./components/Footer/Footer";
+import Register from "./components/Register/Register";
 
 function App() {
-
   const post = {
     title: "Police Department Launches New Community Outreach Program",
     date: "May 1, 2023",
@@ -29,6 +29,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Navigate to='/dashboard' />} />
         <Route path='/dashboard' element={<Dashboard post={post} />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/analytics' element={<Analytics />} />
         <Route path='/recognitions' element={<Recognition />} />
         <Route path='/payfine' element={<Payfine />} />
