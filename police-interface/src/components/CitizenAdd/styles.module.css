@@ -8,8 +8,9 @@
 }
 
 .signup_form_container {
-  width: 900px;
-  height: 1000;
+  width: 1000px;
+  
+  margin-top: 2%;
   display: flex;
   border-radius: 1px;
   box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%),
