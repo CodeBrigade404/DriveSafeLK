@@ -9,7 +9,9 @@ import Navbar from "./components/NavBar/Navbar";
 import Emergency from "./components/Emergency/Emergency";
 import Licenses from "./components/Licenses/Licenses";
 import Footer from "./components/Footer/Footer";
-import Register from "./components/Register/Register";
+import Login from "./components/AdminLogin/login";
+import UserData from "./components/UserProfile/User";
+import CitizenAdd from "./components/CitizenAdd/citizenAddForum";
 import ViewSingleComplaint from "./components/Complaint/ViewSingleComplaint";
 import ComplaintTable from "./components/Complaint/ComplaintTable";
 import VehicleTable from "./components/Vehicle/VehicleTable";
@@ -21,15 +23,17 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
+      <Route path="/login" element={<Login/>}/>
         <Route path='/' element={<Navigate to='/dashboard' />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/register' element={<Register />} />
+        <Route path='/dashboard' element={<Dashboard post={post} />} />
         <Route path='/analytics' element={<Analytics />} />
         <Route path='/recognitions' element={<Recognition />} />
         <Route path='/payfine' element={<Payfine />} />
         <Route path='/reports' element={<Reports />} />
         <Route path='/licenses' element={<Licenses />} />
         <Route path='/emergency' element={<Emergency />} />
+        <Route path='/user' element={<UserData />} />
+        <Route path='/CitizenAdd' element={<CitizenAdd />} />
         <Route path={"/vehicles"}>
           <Route index element={<VehicleTable />} />
           <Route path=':id' element={<VehicleDetails />} />

@@ -42,7 +42,7 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
       <List>
         {[
           { text: "Dashboard", route: "/dashboard" },
-          { text: "Citizen Registration", route: "/register" },
+          { text: "Citizen Registration", route: "/citizenAdd" },
           { text: "Analytics", route: "/analytics" },
           { text: "Pay Fines", route: "/payfine" },
           { text: "Find Vehicle", route: "/vehicles" },
