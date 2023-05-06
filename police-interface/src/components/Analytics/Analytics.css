@@ -1,7 +1,7 @@
 .crime-line-graph-container {
-  width: 800px;
+  width: 900px;
   height: 500px;
-  position: absolute;
   top: 15%;
-  left: 20%;
+  margin-bottom: 5%;
+  text-align: center;
 }
