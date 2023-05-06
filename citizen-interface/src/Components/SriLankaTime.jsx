@@ -27,7 +27,7 @@ function Clock() {
           <span>:</span>
           <span>{minutes.toString().padStart(2, '0')}</span>
         </div>
-        <span className='absolute ml-[13rem] mt-16 text-xl  w-5 '>
+        <span className='absolute ml-[16rem] mt-16 text-xl  w-5 '>
           {seconds.toString().padStart(2, '0')}
         </span>
       </div>

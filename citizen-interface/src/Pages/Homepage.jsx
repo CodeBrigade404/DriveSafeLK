@@ -6,9 +6,19 @@ import Home from '../Components/Home';
 import Fine from '../Components/Fine';
 import Complain from '../Components/Complain';
 import Vehicles from '../Components/Vehicles';
+import Candrive from '../Components/Candrive';
+import prof from '../assets/profilepic.png';
 
 function Homepage() {
-  const text = '200026401823';
+  const person = {
+    profile: prof,
+    nic: '200026401824',
+    name: 'Asgard Wala Ordin Godlage  Kris Hemsworth God ',
+    age: 32,
+    mobile: '0763441171',
+    Special: 'Shoud wear contact lensces',
+  };
+  const text = person.nic;
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
   const handleClick = (index) => {
@@ -26,7 +36,8 @@ function Homepage() {
         />
         <Time />
         <Qrcode text={text} />
-        {activeButtonIndex === 0 && <Home />}
+        {activeButtonIndex === 0 && <Home person={person} />}
+        {activeButtonIndex === 0 && <Candrive />}
         {activeButtonIndex === 1 && <Fine />}
         {activeButtonIndex === 2 && <Complain />}
         {activeButtonIndex === 3 && <Vehicles />}
