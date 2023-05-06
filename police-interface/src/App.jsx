@@ -11,6 +11,10 @@ import Complaint from "./components/Complaint/Complaint";
 import Emergency from "./components/Emergency/Emergency";
 import Licenses from "./components/Licenses/Licenses";
 import Footer from "./components/Footer/Footer";
+import Login from "./components/AdminLogin/login";
+import UserData from "./components/UserProfile/User";
+import CitizenAdd from "./components/CitizenAdd/citizenAddForum";
+
 
 function App() {
 
@@ -27,6 +31,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
+      <Route path="/login" element={<Login/>}/>
         <Route path='/' element={<Navigate to='/dashboard' />} />
         <Route path='/dashboard' element={<Dashboard post={post} />} />
         <Route path='/analytics' element={<Analytics />} />
@@ -37,6 +42,11 @@ function App() {
         <Route path='/licenses' element={<Licenses />} />
         <Route path='/emergency' element={<Emergency />} />
         <Route path='/complaints' element={<Complaint />} />
+        <Route path='/user' element={<UserData />} />
+        <Route path='/CitizenAdd' element={<CitizenAdd />} />
+      
+        
+        
       </Routes>
       <Footer />
     </BrowserRouter>
