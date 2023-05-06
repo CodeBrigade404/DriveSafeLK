@@ -15,15 +15,17 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import WarningIcon from "@mui/icons-material/Warning";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
   const iconMap = {
     Dashboard: <DashboardIcon />,
+    "Citizen Registration": <HowToRegIcon />,
     Analytics: <AnalyticsIcon />,
     "Pay Fines": <PaymentIcon />,
     "Find Vehicle": <FindInPageIcon />,
-    "Recognitions": <CameraAltIcon />,
+    Recognitions: <CameraAltIcon />,
     Reports: <DescriptionIcon />,
     Emergency: <WarningIcon />,
     Licenses: <BadgeIcon />,
@@ -33,15 +35,17 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role='presentation'
+      role="presentation"
       onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}>
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
       <List>
         {[
           { text: "Dashboard", route: "/dashboard" },
+          { text: "Citizen Registration", route: "/register" },
           { text: "Analytics", route: "/analytics" },
           { text: "Pay Fines", route: "/payfine" },
-          { text: "Find Vehicle", route: "/vehicle" },
+          { text: "Find Vehicle", route: "/vehicles" },
           { text: "Recognitions", route: "/recognitions" },
           { text: "Reports", route: "/reports" },
           { text: "Emergency", route: "/emergency" },
@@ -52,7 +56,8 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
             <ListItemButton
               component={Link}
               to={item.route}
-              sx={{ "&:hover": { backgroundColor: "#c2c2c2" } }}>
+              sx={{ "&:hover": { backgroundColor: "#c2c2c2" } }}
+            >
               <ListItemIcon>{iconMap[item.text]}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
@@ -66,7 +71,11 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
     <div>
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+          <Drawer
+            anchor={anchor}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+          >
             {list(anchor)}
           </Drawer>
         </React.Fragment>

@@ -1,97 +1,106 @@
 const express = require("express");
 const router = express.Router();
-const Fine = require("../models/fine.model");
+const CitizenFines = require("../models/fine.model");
 
-// Get all fines
+/*Get all details */
 router.get("/", async (req, res) => {
-    try {
-        const fines = await Fine.find();
-        res.json(fines);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-    }
-);
-
-// Get one fine
-router.get("/:id", getFine, (req, res) => {
-    res.json(res.fine);
+  try {
+    const fines = await CitizenFines.find();
+    res.json(fines);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
-// Create one fine
+
+/*Add Citizen with fines http://localhost:5000/driveSafe/payfine/ */
 router.post("/", async (req, res) => {
-    const fine = new Fine({
-        citizen: req.body.citizen,
-        officer: req.body.officer,
-        content: req.body.content,
-        fineAmount: req.body.fineAmount,
-        status: req.body.status,
-        datePaid: req.body.datePaid,
-        evidence: req.body.evidence,
+  try {
+    const { citizenNIC, citizenName, finesOfCitizens } = req.body;
+
+    // create a new CitizenFines document
+    const citizenFines = new CitizenFines({
+      citizenNIC,
+      citizenName,
+      finesOfCitizens,
     });
-    try {
-        const newFine = await fine.save();
-        res.status(201).json(newFine);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-});
 
-// Update one fine
-router.patch("/:id", getFine, async (req, res) => {
-    if (req.body.citizen != null) {
-        res.fine.citizen = req.body.citizen;
-    }
-    if (req.body.officer != null) {
-        res.fine.officer = req.body.officer;
-    }
-    if (req.body.content != null) {
-        res.fine.content = req.body.content;
-    }
-    if (req.body.fineAmount != null) {
-        res.fine.fineAmount = req.body.fineAmount;
-    }
-    if (req.body.status != null) {
-        res.fine.status = req.body.status;
-    }
-    if (req.body.datePaid != null) {
-        res.fine.datePaid = req.body.datePaid;
-    }
-    if (req.body.evidence != null) {
-        res.fine.evidence = req.body.evidence;
-    }
-    try {
-        const updatedFine = await res.fine.save();
-        res.json(updatedFine);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-});
+    // save the document to the database
+    await citizenFines.save();
 
-router.delete("/:id", getFine, async (req, res) => {
-  try {
-    await Fine.deleteOne({ _id: res.fine._id });
-    res.json({ message: "Deleted fine" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(201).json({ message: "Citizen fines added successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
-async function getFine(req, res, next) {
+/*This route works as when gives citizenNIC it will gives relevant all fine detail  Example: http://localhost:5000/driveSafe/payfine/123456789V*/
+router.get("/:citizenNIC", async (req, res) => {
   try {
-    const fine = await Fine.findById(req.params.id);
-    if (!fine) {
-      return res.status(404).json({ message: "Fine not found" });
+    const citizenFines = await CitizenFines.findOne({ citizenNIC: req.params.citizenNIC });
+
+    if (!citizenFines) {
+      return res.status(404).json({ message: "Citizen not found" });
     }
-    res.fine = fine;
-    next();
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+
+    res.status(200).json({ citizenFines });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
   }
-}
+});
+
+
+
+/*This route works as when gives citizenNIC it will update the relevant all fine detail  Example: http://localhost:5000/driveSafe/payfine/123456789V*/
+router.put("/:citizenNIC", async (req, res) => {
+  try {
+    const { citizenName, finesOfCitizens } = req.body;
+
+    const citizenFines = await CitizenFines.findOneAndUpdate(
+      { citizenNIC: req.params.citizenNIC },
+      { $set: { citizenName, finesOfCitizens } },
+      { new: true }
+    );
+
+    if (!citizenFines) {
+      return res.status(404).json({ message: "Citizen not found" });
+    }
+
+    res.status(200).json({ message: "Citizen details updated successfully", citizenFines });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+
+
+
+/*This route works as when gives citizenNIC and fineId it will delete the relevant fine detail  Example: http://localhost:5000/driveSafe/payfine/123456789V/fine/1*/
+
+router.delete("/:citizenNIC/fine/:fineId", async (req, res) => {
+  try {
+    const { citizenNIC, fineId } = req.params;
+
+    const citizenFines = await CitizenFines.findOneAndUpdate(
+      { citizenNIC },
+      { $pull: { finesOfCitizens: { fineId } } },
+      { new: true }
+    );
+
+    if (!citizenFines) {
+      return res.status(404).json({ message: "Citizen not found" });
+    }
+
+    res.status(200).json({ message: "Fine record deleted successfully", citizenFines });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+
 
 module.exports = router;
-
-
-
-

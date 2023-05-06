@@ -1,34 +1,46 @@
 const mongoose = require("mongoose");
 
-const fineSchema = new mongoose.Schema({
-  citizen: {
+const citizenFineSchema = new mongoose.Schema({
+  citizenNIC: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  citizenName: {
     type: String,
     required: true,
   },
-  officer: {
-    type: String,
-    required: true,
-  },
-  content: {
-    type: String,
-    required: true,
-  },
-  fineAmount: {
-    type: Number,
-    required: true,
-  },
-  status: {
-    type: Boolean,
-    required: true,
-  },
-  datePaid: {
-    type: Date,
-    required: false,
-  },
-  evidence: {
-    type: String,
-    required: false,
-  },
+  finesOfCitizens: [
+    {
+      fineId: {
+        type: String,
+        unique: true,
+        required: true,
+      },
+      fineAmount: {
+        type: Number,
+        required: true,
+      },
+      fineDate: {
+        type: Date,
+        required: true,
+        default: Date.now,
+      },
+      fineContent: {
+        type: String,
+      },
+      fineEvidence: {
+        type: String,
+      },
+      statusOfPaid: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+    },
+  ],
 });
 
-module.exports = mongoose.model("Fine", fineSchema);
+const CitizenFines = mongoose.model("CitizenFines", citizenFineSchema);
+
+module.exports = CitizenFines;

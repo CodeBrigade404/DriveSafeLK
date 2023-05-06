@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       montserrat: ['Montserrat', 'sans-serif'],
+      bruno: ['Bruno Ace SC', 'sans-serif'],
     },
     extend: {},
   },

@@ -14,11 +14,6 @@ app.use(cors());
 
 dbConnection();
 
-//localhost:5000/driveSafe/payfine/ - GET
-//localhost:5000/driveSafe/payfine/ - POST
-//localhost:5000/driveSafe/payfine/:id - GET
-//localhost:5000/driveSafe/payfine/:id - PATCH
-//localhost:5000/driveSafe/payfine/:id - DELETE
 app.use("/driveSafe/payfine", fineRoutes);
 
 app.listen(port, () => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
+import Typography from "@mui/material/Typography";
 import "./Analytics.css";
 
 const data = {
@@ -7,7 +8,7 @@ const data = {
   datasets: [
     {
       label: "Number of Crimes",
-      data: [150, 200, 180, 250, 210, 300, 280, 320, 350, 400, 380, 450],
+      data: [150, 180, 150, 150, 160, 200, 240, 120, 150, 200, 310, 200],
       borderColor: "rgba(54, 162, 235, 1)",
       backgroundColor: "rgba(54, 162, 235, 0.2)",
       tension: 0.4,
@@ -50,10 +51,10 @@ useEffect(() => {
             display: true,
             title: {
               display: true,
-              text: "Number of Crimes",
+              text: "Number of Road Accidents",
             },
             suggestedMin: 0,
-            suggestedMax: 500,
+            suggestedMax: 400,
           },
         },
       },
@@ -67,7 +68,10 @@ useEffect(() => {
 }, [chartRef]);
 
   return (
-    <div className="crime-line-graph-container">
+    <div className='crime-line-graph-container'>
+      <Typography variant='h5' component='h2' fontWeight='bold' fontFamily='Roboto' sx={{ mb: 2 }}>
+        CITIZEN ANNUAL ROAD ACCIDENT ANALYSIS
+      </Typography>
       <canvas ref={chartRef} />
     </div>
   );
