@@ -10,47 +10,34 @@ import Emergency from "./components/Emergency/Emergency";
 import Licenses from "./components/Licenses/Licenses";
 import Footer from "./components/Footer/Footer";
 import Register from "./components/Register/Register";
-
 import ViewSingleComplaint from "./components/Complaint/ViewSingleComplaint";
 import ComplaintTable from "./components/Complaint/ComplaintTable";
-
 import VehicleTable from "./components/Vehicle/VehicleTable";
 import VehicleDetails from "./components/Vehicle/SingleVehicle";
 import Form from "./components/Vehicle/AddVehicleForm";
 
 function App() {
-  const post = {
-    title: "Police Department Launches New Community Outreach Program",
-    date: "May 1, 2023",
-    description:
-      "The police department has announced a new program to increase community engagement and build trust with local residents.",
-    image:
-      "https://images.unsplash.com/photo-1593642532453-3db3b3d57d33?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cG9saWNlJTIwZGVwYXJ0bWVudHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
-    imageLabel: "Police officers interacting with community members",
-  };
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" />} />
-        <Route path="/dashboard" element={<Dashboard post={post} />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/recognitions" element={<Recognition />} />
-        <Route path="/payfine" element={<Payfine />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/licenses" element={<Licenses />} />
-        <Route path="/emergency" element={<Emergency />} />
-
+        <Route path='/' element={<Navigate to='/dashboard' />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/analytics' element={<Analytics />} />
+        <Route path='/recognitions' element={<Recognition />} />
+        <Route path='/payfine' element={<Payfine />} />
+        <Route path='/reports' element={<Reports />} />
+        <Route path='/licenses' element={<Licenses />} />
+        <Route path='/emergency' element={<Emergency />} />
         <Route path={"/vehicles"}>
           <Route index element={<VehicleTable />} />
-          <Route path=":id" element={<VehicleDetails />} />
-          <Route path="add" element={<Form />} />
+          <Route path=':id' element={<VehicleDetails />} />
+          <Route path='add' element={<Form />} />
         </Route>
-
         <Route path={"/complaints"}>
           <Route index element={<ComplaintTable />} />
-          <Route path=":id" element={<ViewSingleComplaint />} />
+          <Route path=':id' element={<ViewSingleComplaint />} />
         </Route>
       </Routes>
       <Footer />
