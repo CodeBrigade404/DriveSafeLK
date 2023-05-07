@@ -297,10 +297,10 @@ const changePassword = async (req, res) => {
   }
 };
 
-const getuser = async (req, res) => {
+const getAlluser = async (req, res) => {
   try {
     const { userId } = req.params;
-    const user = await Customer.findById(userId);
+    const user = await Customer.find();
 
     res.json(user);
   } catch (error) {
@@ -317,5 +317,5 @@ export {
   forgetPassword,
   resetPasswordcon,
   changePassword,
-  getuser,
+  getAlluser,
 };
