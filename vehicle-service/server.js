@@ -4,7 +4,7 @@ import morgan from "morgan";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorMiddleware.js";
 import vehicleRoutes from "./routes/vehicleRoutes.js";
-
+import cors from "cors";
 //config dotenv
 dotenv.config();
 
@@ -14,7 +14,7 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(cors());
 app.use("/api/vehicles", vehicleRoutes);
 
 app.use(errorHandler);
