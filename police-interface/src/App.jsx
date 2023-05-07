@@ -22,47 +22,40 @@ import ResetPassword from "./components/UserProfile/resetPassword";
 import ForgetPassword from "./components/UserProfile/forgetPassword";
 
 function App() {
-  const post = {
-    title: "Police Department Launches New Community Outreach Program",
-    date: "May 1, 2023",
-    description:
-      "The police department has announced a new program to increase community engagement and build trust with local residents.",
-    image:
-      "https://images.unsplash.com/photo-1593642532453-3db3b3d57d33?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cG9saWNlJTIwZGVwYXJ0bWVudHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
-    imageLabel: "Police officers interacting with community members",
-  };
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-      <Route path="/login" element={<Login/>}/>
-        <Route path='/' element={<Navigate to='/dashboard' />} />
-        <Route path='/dashboard' element={<Dashboard post={post} />} />
-        <Route path='/analytics' element={<Analytics />} />
-        <Route path='/recognitions' element={<Recognition />} />
-        <Route path='/payfine' element={<Payfine />} />
-       
-        <Route path='/reports' element={<Reports />} />
-        <Route path='/licenses' element={<Licenses />} />
-        <Route path='/emergency' element={<Emergency />} />
-        <Route path='/forgetPassword' element={<ForgetPassword />} />
-        <Route path='/resetPassword/:token' element={<ResetPassword />} />
-
-        <Route path='/user' element={<UserData />} />
-        <Route path='/CitizenAdd' element={<CitizenAdd />} />
-        <Route path='/CitizenAll' element={<CitizenAll />} />
-        <Route path={"/vehicles"}>
-          <Route index element={<VehicleTable />} />
-          <Route path=":id" element={<VehicleDetails />} />
-          <Route path="add" element={<Form />} />
-        </Route>
-        <Route path={"/complaints"}>
-          <Route index element={<ComplaintTable />} />
-          <Route path=":id" element={<ViewSingleComplaint />} />
-        </Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <div className='App'>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<Navigate to='/dashboard' />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/analytics' element={<Analytics />} />
+          <Route path='/recognitions' element={<Recognition />} />
+          <Route path='/payfine' element={<Payfine />} />
+          <Route path='/reports' element={<Reports />} />
+          <Route path='/licenses' element={<Licenses />} />
+          <Route path='/emergency' element={<Emergency />} />
+          <Route path='/user' element={<UserData />} />
+          <Route path='/CitizenAdd' element={<CitizenAdd />} />
+          <Route path='/forgetPassword' element={<ForgetPassword />} />
+          <Route path='/resetPassword/:token' element={<ResetPassword />} />
+         <Route path='/user' element={<UserData />} />
+         <Route path='/CitizenAdd' element={<CitizenAdd />} />
+         <Route path='/CitizenAll' element={<CitizenAll />} />
+          <Route path={"/vehicles"}>
+            <Route index element={<VehicleTable />} />
+            <Route path=':id' element={<VehicleDetails />} />
+            <Route path='add' element={<Form />} />
+          </Route>
+          <Route path={"/complaints"}>
+            <Route index element={<ComplaintTable />} />
+            <Route path=':id' element={<ViewSingleComplaint />} />
+          </Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
 

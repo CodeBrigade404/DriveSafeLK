@@ -9,6 +9,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
+import Chip from "@mui/material/Chip";
+import Divider from "@mui/material/Divider";
+
 const cards = [
   {
     key: 1,
@@ -28,7 +31,7 @@ const cards = [
   {
     key: 4,
     image: "https://cdn-icons-mp4.flaticon.com/512/9686/9686933.mp4",
-    heading: "Traffic Vehicles Monitoring",
+    heading: "Vehicle Monitoring",
   },
   {
     key: 5,
@@ -53,7 +56,7 @@ const cards = [
   // ... add more objects for additional cards
 ];
 
-export default function Album() {
+export default function Dashboard() {
   const theme = useTheme();
   return (
     <main>
@@ -64,16 +67,19 @@ export default function Album() {
           pb: 6,
         }}>
         <Container>
-          <Typography
-            component='h1'
-            variant='h5'
-            align='center'
-            color='text.primary'
-            fontFamily={"Roboto"}
-            fontWeight={"bold"}
-            gutterBottom>
-            Sri Lanka Traffic Police force of the Democratic Socialist Republic of Sri Lanka.
-          </Typography>
+          <Divider>
+            <Chip
+              label='Sri Lanka Traffic Police force of the Democratic Socialist Republic of Sri Lanka.'
+              component='h1'
+              sx={{
+                color: "white",
+                backgroundColor: "#263238",
+                fontSize: "23px",
+                fontWeight: "bold",
+                fontFamily: "Roboto",
+                mb: 2,
+              }}></Chip>
+          </Divider>
           <Typography color='text.secondary' paragraph>
             DriveSafe is the ultimate resource for safe driving in Sri Lanka. We've partnered with
             the Sri Lanka Traffic Police to provide you with the latest information and guidelines
@@ -126,38 +132,6 @@ export default function Album() {
           ))}
         </Grid>
       </Container>
-
-      {/* <Container sx={{ py: 10 }}>
-        <Grid container spacing={4}>
-          {cards.map((card) => (
-            <Grid item key={card.key} xs={16} md={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.25)",
-                }}>
-                <CardMedia
-                  component='video'
-                  src={card.image}
-                  alt='random'
-                  sx={{ width: 270, height: 170 }}
-                />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography
-                    gutterBottom
-                    variant='h6'
-                    align='center'
-                    fontFamily={"Roboto"}
-                    fontWeight={"bold"}>
-                    {card.heading}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container> */}
     </main>
   );
 }
