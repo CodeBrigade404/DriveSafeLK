@@ -8,6 +8,7 @@ import Complain from '../Components/Complain';
 import Vehicles from '../Components/Vehicles';
 import Candrive from '../Components/Candrive';
 import CForm from '../Components/CForm';
+import Vehibutton from '../Components/Vehibutton';
 import prof from '../assets/profilepic.png';
 
 function Homepage() {
@@ -43,6 +44,7 @@ function Homepage() {
         {activeButtonIndex === 2 && <Complain />}
         {activeButtonIndex === 2 && <CForm />}
         {activeButtonIndex === 3 && <Vehicles />}
+        {activeButtonIndex === 3 && <Vehibutton />}
       </div>
     </div>
   );

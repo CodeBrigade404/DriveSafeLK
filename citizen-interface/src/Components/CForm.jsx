@@ -2,7 +2,7 @@ import React from 'react';
 
 function CForm() {
   return (
-    <div className='absolute flex flex-col mt-[-31rem] ml-[25rem]  w-[23rem] rounded-3xl h-[31rem] pl-3 pt-3 pr-3 bg-[#F8F9FA] drop-shadow-2xl shadow-[#405C5C]'>
+    <div className='absolute flex flex-col mt-[-31rem] ml-[25rem] text-[#405D5C] w-[23rem] rounded-3xl h-[31rem] pl-3 pt-3 pr-3 bg-[#F8F9FA] drop-shadow-2xl shadow-[#405C5C]'>
       <h1 className='text-2xl text-center px-1 py-1 '>Add a complain</h1>
 
       <label className='mt-4' for='fname'>
