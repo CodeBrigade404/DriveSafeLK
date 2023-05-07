@@ -9,6 +9,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
+import Chip from "@mui/material/Chip";
+import Divider from "@mui/material/Divider";
 
 const cards = [
   {
@@ -65,16 +67,19 @@ export default function Dashboard() {
           pb: 6,
         }}>
         <Container>
-          <Typography
-            component='h1'
-            variant='h5'
-            align='center'
-            color='text.primary'
-            fontFamily={"Roboto"}
-            fontWeight={"bold"}
-            gutterBottom>
-            Sri Lanka Traffic Police force of the Democratic Socialist Republic of Sri Lanka.
-          </Typography>
+          <Divider>
+            <Chip
+              label='Sri Lanka Traffic Police force of the Democratic Socialist Republic of Sri Lanka.'
+              component='h1'
+              sx={{
+                color: "white",
+                backgroundColor: "#263238",
+                fontSize: "23px",
+                fontWeight: "bold",
+                fontFamily: "Roboto",
+                mb: 2,
+              }}></Chip>
+          </Divider>
           <Typography color='text.secondary' paragraph>
             DriveSafe is the ultimate resource for safe driving in Sri Lanka. We've partnered with
             the Sri Lanka Traffic Police to provide you with the latest information and guidelines

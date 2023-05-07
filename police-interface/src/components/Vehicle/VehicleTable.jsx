@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
+import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 const VehicleTable = () => {
   const [vehicles, setVehicles] = useState([]);
 
@@ -38,20 +41,27 @@ const VehicleTable = () => {
   ];
 
   return (
-    <Box m="20px" ml="50px">
-      <Box mt="20px">
-        <Typography
-          variant="h4"
-          color={"#040509"}
-          fontWeight="bold"
-          sx={{ m: "0 0 5px 0" }}
-        >
-          Vehicle Details
-        </Typography>
-      </Box>
+    <Box
+      sx={{
+        pt: 6,
+        pb: 6,
+      }}>
+      <Container>
+        <Divider>
+          <Chip
+            label='Authorized Vehicles'
+            component='h1'
+            sx={{
+              color: "white",
+              backgroundColor: "#263238",
+              fontSize: "23px",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+            }}></Chip>
+        </Divider>
+      </Container>
       <Box
-        m="20px 0 0 0"
-        height="75vh"
+        height='75vh'
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -79,8 +89,9 @@ const VehicleTable = () => {
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
             color: `${"#141414"} !important`,
           },
-        }}
-      >
+          pr: 10,
+          pl: 10,
+        }}>
         <DataGrid
           rows={vehicles}
           columns={columns}

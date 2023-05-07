@@ -20,32 +20,34 @@ import Form from "./components/Vehicle/AddVehicleForm";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-      <Route path="/login" element={<Login/>}/>
-        <Route path='/' element={<Navigate to='/dashboard' />} />
-        <Route path='/dashboard' element={<Dashboard post={post} />} />
-        <Route path='/analytics' element={<Analytics />} />
-        <Route path='/recognitions' element={<Recognition />} />
-        <Route path='/payfine' element={<Payfine />} />
-        <Route path='/reports' element={<Reports />} />
-        <Route path='/licenses' element={<Licenses />} />
-        <Route path='/emergency' element={<Emergency />} />
-        <Route path='/user' element={<UserData />} />
-        <Route path='/CitizenAdd' element={<CitizenAdd />} />
-        <Route path={"/vehicles"}>
-          <Route index element={<VehicleTable />} />
-          <Route path=':id' element={<VehicleDetails />} />
-          <Route path='add' element={<Form />} />
-        </Route>
-        <Route path={"/complaints"}>
-          <Route index element={<ComplaintTable />} />
-          <Route path=':id' element={<ViewSingleComplaint />} />
-        </Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <div className='App'>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<Navigate to='/dashboard' />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/analytics' element={<Analytics />} />
+          <Route path='/recognitions' element={<Recognition />} />
+          <Route path='/payfine' element={<Payfine />} />
+          <Route path='/reports' element={<Reports />} />
+          <Route path='/licenses' element={<Licenses />} />
+          <Route path='/emergency' element={<Emergency />} />
+          <Route path='/user' element={<UserData />} />
+          <Route path='/CitizenAdd' element={<CitizenAdd />} />
+          <Route path={"/vehicles"}>
+            <Route index element={<VehicleTable />} />
+            <Route path=':id' element={<VehicleDetails />} />
+            <Route path='add' element={<Form />} />
+          </Route>
+          <Route path={"/complaints"}>
+            <Route index element={<ComplaintTable />} />
+            <Route path=':id' element={<ViewSingleComplaint />} />
+          </Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
 

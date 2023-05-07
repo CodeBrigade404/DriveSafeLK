@@ -8,21 +8,35 @@ import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 export default function Uploader() {
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState("No selected file");
   return (
-    <div>
-      <Typography
-        variant='h5'
-        component='h2'
-        fontWeight='bold'
-        fontFamily='Roboto'
-        sx={{ mt: 6, textAlign: "center" }}>
-        VEHICLE NUMBER PALATE RECOGNITION SERVICE
-      </Typography>
-      <Typography color='text.secondary' paragraph sx={{ m :5,mr: 15  ,ml:15}}>
+    <Box
+      sx={{
+        pt: 6,
+        pb: 3,
+      }}>
+      <Container>
+        <Divider>
+          <Chip
+            label='Vehicle Number Plate Recognition'
+            component='h1'
+            sx={{
+              color: "white",
+              backgroundColor: "#263238",
+              fontSize: "23px",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+            }}></Chip>
+        </Divider>
+      </Container>
+      <Typography color='text.secondary' paragraph sx={{ m: 5, mr: 15, ml: 15 }}>
         The number plate recognition feature of driveSafe uses image processing algorithms to
         identify and extract the text present on the number plate of the uploaded image. This
         feature leverages machine learning techniques to accurately recognize and decode the
@@ -100,7 +114,7 @@ export default function Uploader() {
           </ImageList>
         </section>
       </div>
-    </div>
+    </Box>
   );
 }
 

@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
+
 import "./Analytics.css";
 
 const data = {
@@ -68,19 +71,31 @@ const Analytics = () => {
   }, [chartRef]);
 
   return (
-    <Container sx={{ display: "flex", justifyContent: "center" , mt:5 ,mb:5}}>
-      <div className='crime-line-graph-container'>
-        <Typography
-          variant='h5'
-          component='h2'
-          fontWeight='bold'
-          fontFamily='Roboto'
-          sx={{ textAlign: "center" }}>
-          CITIZEN ANNUAL ROAD ACCIDENT ANALYSIS
-        </Typography>
-        <canvas ref={chartRef} />
-      </div>
-    </Container>
+    <Box
+      sx={{
+        pt: 6,
+        pb: 6,
+      }}>
+      <Container>
+        <Divider>
+          <Chip
+            label='Annually Road Accident Analysis'
+            component='h1'
+            sx={{
+              color: "white",
+              backgroundColor: "#263238",
+              fontSize: "23px",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+            }}></Chip>
+        </Divider>
+      </Container>
+      <Container sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
+        <div className='crime-line-graph-container'>
+          <canvas ref={chartRef} />
+        </div>
+      </Container>
+    </Box>
   );
 };
 
