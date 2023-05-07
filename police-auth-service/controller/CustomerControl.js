@@ -178,8 +178,10 @@ const forgetPassword = async (req, res) => {
             res.status(200).json({
                 status: true,
                 message: "Email sent successfully",
-                data: undefined
+                data: undefined,
+                
             });
+            console.log(token);
         } else {
             return res.status(401).json({
                 status: false,

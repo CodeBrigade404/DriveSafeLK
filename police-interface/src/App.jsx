@@ -17,6 +17,9 @@ import ComplaintTable from "./components/Complaint/ComplaintTable";
 import VehicleTable from "./components/Vehicle/VehicleTable";
 import VehicleDetails from "./components/Vehicle/SingleVehicle";
 import Form from "./components/Vehicle/AddVehicleForm";
+import CitizenAll from "./components/CitizenAllView/citizenAllView";
+import ResetPassword from "./components/UserProfile/resetPassword";
+import ForgetPassword from "./components/UserProfile/forgetPassword";
 
 function App() {
   const post = {
@@ -42,9 +45,12 @@ function App() {
         <Route path='/reports' element={<Reports />} />
         <Route path='/licenses' element={<Licenses />} />
         <Route path='/emergency' element={<Emergency />} />
-       
+        <Route path='/forgetPassword' element={<ForgetPassword />} />
+        <Route path='/resetPassword/:token' element={<ResetPassword />} />
+
         <Route path='/user' element={<UserData />} />
         <Route path='/CitizenAdd' element={<CitizenAdd />} />
+        <Route path='/CitizenAll' element={<CitizenAll />} />
         <Route path={"/vehicles"}>
           <Route index element={<VehicleTable />} />
           <Route path=":id" element={<VehicleDetails />} />

@@ -61,7 +61,7 @@ const CitizenAdd = () => {
         // Filter out the unchecked items and only include the names
       };
       const { data: res } = await axios.post(url, payload);
-      navigate("/login");
+      navigate("/CitizenAll");
       console.log(res.message);
       console.log(payload);
     } catch (error) {
@@ -91,7 +91,7 @@ const CitizenAdd = () => {
       <div className={styles.signup_form_container}>
         <div className={styles.left}>
           <h1>Add Citizen Form</h1>
-          <Link to="/login">
+          <Link to="/CitizenAll">
             <button type="button" className={styles.white_btn}>
               View All Citizen
             </button>
