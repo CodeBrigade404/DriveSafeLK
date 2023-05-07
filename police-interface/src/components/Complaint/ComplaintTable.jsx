@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 const ComplaintTable = () => {
   const [complaints, setComplaints] = useState([]);
@@ -46,10 +49,9 @@ const ComplaintTable = () => {
         return (
           <select
             value={params.value}
-            onChange={(e) => handleStatusChange(params.row._id, e.target.value)}
-          >
-            <option value="processing">Processing</option>
-            <option value="resolves">Resolved</option>
+            onChange={(e) => handleStatusChange(params.row._id, e.target.value)}>
+            <option value='processing'>Processing</option>
+            <option value='resolves'>Resolved</option>
           </select>
         );
       },
@@ -57,20 +59,28 @@ const ComplaintTable = () => {
   ];
 
   return (
-    <Box m="20px" ml="50px">
-      <Box mt="20px">
-        <Typography
-          variant="h4"
-          color={"#040509"}
-          fontWeight="bold"
-          sx={{ m: "0 0 5px 0" }}
-        >
-          Complaint Details
-        </Typography>
-      </Box>
+    <Box
+      sx={{
+        pt: 6,
+        pb: 6,
+      }}>
+      <Container>
+        <Divider>
+          <Chip
+            label='Citizen Complaints'
+            component='h1'
+            sx={{
+              color: "white",
+              backgroundColor: "#263238",
+              fontSize: "23px",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+            }}></Chip>
+        </Divider>
+      </Container>
       <Box
-        m="20px 0 0 0"
-        height="75vh"
+        m='20px 0 0 0'
+        height='75vh'
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -98,8 +108,9 @@ const ComplaintTable = () => {
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
             color: `${"#141414"} !important`,
           },
-        }}
-      >
+          pr: 10,
+          pl: 10,
+        }}>
         <DataGrid
           rows={complaints}
           columns={columns}

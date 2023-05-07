@@ -23,20 +23,19 @@ export default function StickyFooter() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
       }}>
       <Box
         component='footer'
         sx={{
           py: 3,
           px: 2,
-          mt: "auto",
           backgroundColor: " #c2c2c2",
+          position: "sticky",
+          bottom: 0,
         }}>
         <Container maxWidth='sm'>
           <Typography variant='body1'>
-            Sri Lanka Police force of the Democratic Socialist
-            Republic of Sri Lanka.
+            Sri Lanka Police force of the Democratic Socialist Republic of Sri Lanka.
           </Typography>
           <Copyright />
         </Container>
