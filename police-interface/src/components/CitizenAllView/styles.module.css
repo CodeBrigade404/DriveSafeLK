@@ -2,21 +2,18 @@ table {
   border-collapse: collapse;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
- 
+  margin-left: 5%;
 }
 
 thead {
   background-color: #e3e1e1;
   font-weight: bold;
-  
 }
 
 th,
 td {
   padding: 50px;
   text-align: right;
-  border: 9px solid #a23e3e;
 }
 
 th:first-child,
@@ -41,10 +38,3 @@ tbody tr:hover {
   background-color: #09090d;
   padding: 1px;
 }
-
-
-
-
-
-
-
