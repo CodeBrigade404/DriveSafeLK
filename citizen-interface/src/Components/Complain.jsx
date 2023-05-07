@@ -16,7 +16,7 @@ function Complain() {
     <div className='pt-6 pl-[1rem] ml-[50rem] mt-[4rem] w-[30rem] h-[31rem] bg-[#F8F9FA] drop-shadow-2xl shadow-[#405C5C] rounded-3xl '>
       <div className=' flex flex-col overflow-scroll  w-[28rem] h-[28rem] '>
         {complain.map((complain) => (
-          <div className='pt-4 text-lg mb-4 pl-1  w-full flex bg-emerald-100  flex-row '>
+          <div className='py-3 text-[#405D5C] text-lg mb-4 pl-1  w-full flex bg-slate-100  flex-row '>
             <p className='w-[6rem]'>{complain.category}</p>
             <p className='w-[12rem] truncate'>{complain.description}</p>
             <p className='w-[5rem] ml-10'>{complain.status}</p>
