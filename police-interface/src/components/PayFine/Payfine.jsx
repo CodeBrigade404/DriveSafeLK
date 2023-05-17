@@ -60,12 +60,12 @@ export default function PayFine() {
     <Box
       sx={{
         pt: 6,
-        pb: 6,
+        pb: 3,
       }}>
       <Container>
         <Divider>
           <Chip
-            label='Citizen Fine Analysis'
+            label='Citizen Fines Analysis'
             component='h1'
             sx={{
               color: "white",
@@ -76,7 +76,7 @@ export default function PayFine() {
             }}></Chip>
         </Divider>
       </Container>
-      <Box sx={{ ml: 10 }}>
+      <Box sx={{ alignItems: "center", m: 5 }}>
         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
           <Typography variant='subtitle1' sx={{ mr: 1 }}>
             Search :
@@ -88,54 +88,56 @@ export default function PayFine() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Box>
-        <TableContainer>
-          <TableHead>
-            <TableRow>
-              <TableCell>Citizen ID</TableCell>
-              <TableCell>Citizen Name</TableCell>
-              <TableCell>Fine ID</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Fine Content</TableCell>
-              <TableCell>Fine Evidence</TableCell>
-              <TableCell>Action</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredFines.map((item) =>
-              item.finesOfCitizens.map((fine) => (
-                <TableRow key={fine.fineId}>
-                  <TableCell>{item.citizenNIC}</TableCell>
-                  <TableCell>{item.citizenName}</TableCell>
-                  <TableCell>{fine.fineId}</TableCell>
-                  <TableCell>{fine.fineAmount}</TableCell>
-                  <TableCell>
-                    {fine.statusOfPaid ? (
-                      <Button variant='outlined' sx={{ color: "green" }}>
-                        Paid
-                      </Button>
-                    ) : (
-                      <Button variant='outlined' color='error'>
-                        Unpaid
-                      </Button>
-                    )}
-                  </TableCell>
-                  <TableCell>{fine.fineDate}</TableCell>
-                  <TableCell>{fine.fineContent}</TableCell>
-                  <TableCell>{fine.fineEvidence}</TableCell>
-                  <TableCell>
-                    <IconButton aria-label='edit' onClick={() => handleEdit(fine)}>
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton aria-label='delete' onClick={() => handleDelete(fine)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Citizen ID</TableCell>
+                <TableCell>Citizen Name</TableCell>
+                <TableCell>Fine ID</TableCell>
+                <TableCell>Amount</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Date</TableCell>
+                <TableCell>Fine Content</TableCell>
+                <TableCell>Fine Evidence</TableCell>
+                <TableCell>Action</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filteredFines.map((item) =>
+                item.finesOfCitizens.map((fine) => (
+                  <TableRow key={fine.fineId}>
+                    <TableCell>{item.citizenNIC}</TableCell>
+                    <TableCell>{item.citizenName}</TableCell>
+                    <TableCell>{fine.fineId}</TableCell>
+                    <TableCell>{fine.fineAmount}</TableCell>
+                    <TableCell>
+                      {fine.statusOfPaid ? (
+                        <Button variant='outlined' sx={{ color: "green" }}>
+                          Paid
+                        </Button>
+                      ) : (
+                        <Button variant='outlined' color='error'>
+                          Unpaid
+                        </Button>
+                      )}
+                    </TableCell>
+                    <TableCell>{fine.fineDate}</TableCell>
+                    <TableCell>{fine.fineContent}</TableCell>
+                    <TableCell>{fine.fineEvidence}</TableCell>
+                    <TableCell>
+                      <IconButton aria-label='edit' onClick={() => handleEdit(fine)}>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton aria-label='delete' onClick={() => handleDelete(fine)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
         </TableContainer>
       </Box>
     </Box>
