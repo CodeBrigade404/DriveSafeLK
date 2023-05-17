@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Container from "@mui/material/Container";
-import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
+import Divider from "@mui/material/Divider";
+import { Link } from "react-router-dom";
+
 const VehicleTable = () => {
   const [vehicles, setVehicles] = useState([]);
+  const addHandler = () => {
+    window.location.href = "http://localhost:3000/vehicles/add";
+  };
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -18,7 +23,22 @@ const VehicleTable = () => {
   }, []);
 
   const columns = [
-    { field: "regNo", headerName: "Register Number", flex: 1 },
+    {
+      field: "regNo",
+      headerName: "Register Number",
+      flex: 1,
+      renderCell: (params) => {
+        const vehicleId = params.row._id; // Assuming you have an 'id' field for each vehicle
+        return (
+          <Link
+            to={`/vehicles/${vehicleId}`}
+            style={{ textDecoration: "none" }}
+          >
+            {params.value}
+          </Link>
+        );
+      },
+    },
     { field: "chassiNo", headerName: "Chassis Number", flex: 1 },
     { field: "vehicleType", headerName: "Vehicle Type", flex: 1 },
     { field: "color", headerName: "Color", flex: 1 },
@@ -45,23 +65,42 @@ const VehicleTable = () => {
       sx={{
         pt: 6,
         pb: 6,
-      }}>
+      }}
+    >
       <Container>
         <Divider>
           <Chip
-            label='Authorized Vehicles'
-            component='h1'
+            label="Authorized Vehicles"
+            component="h1"
             sx={{
               color: "white",
               backgroundColor: "#263238",
               fontSize: "23px",
               fontWeight: "bold",
               fontFamily: "Roboto",
-            }}></Chip>
+            }}
+          ></Chip>
         </Divider>
+        <Box>
+          <Button
+            variant="contained"
+            onClick={addHandler}
+            sx={{
+              marginLeft: 140,
+              height: "30px",
+              width: "150px",
+              backgroundColor: "#263238",
+              "&:hover": {
+                backgroundColor: "#263238",
+              },
+            }}
+          >
+            Add a Vehicle
+          </Button>
+        </Box>
       </Container>
       <Box
-        height='75vh'
+        height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -91,7 +130,8 @@ const VehicleTable = () => {
           },
           pr: 10,
           pl: 10,
-        }}>
+        }}
+      >
         <DataGrid
           rows={vehicles}
           columns={columns}
