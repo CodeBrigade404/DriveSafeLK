@@ -8,6 +8,8 @@ import {
   getVehicleByRegNoController,
   updateVehicleController,
   deleteVehicleController,
+  addVehicleControllerByHand,
+  searchVehicleByOwnerName,
 } from "../controllers/vehicleController.js";
 import upload from "../config/multer.js";
 
@@ -22,11 +24,16 @@ router.get("/searchReg/:id", getVehicleByRegNoController);
 
 //add vehicle details to the database
 router.post("/", upload.single("file"), addVehicleController);
-//router.post("/", addVehicleController);
+
+router.post("/add", addVehicleControllerByHand);
+
 //update vehicle details
 router.patch("/:id", updateVehicleController);
 
 //delete vehicle details
 router.delete("/:id", deleteVehicleController);
+
+//serch by owner Name
+router.get("/search_nic/:nic", searchVehicleByOwnerName);
 
 export default router;

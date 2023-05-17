@@ -41,3 +41,38 @@ export const getAllComplaints = asyncHandler(async (req, res) => {
 
   res.status(200).json(complaint);
 });
+
+//get a complaint by id
+export const getComplaintById = asyncHandler(async (req, res) => {
+  const complaint = await Complaint.findById(req.params.id);
+
+  if (complaint) {
+    res.status(200).json(complaint);
+  } else {
+    res.status(404).json({
+      message: "Complaint not found",
+    });
+  }
+});
+
+//update a status
+export const updateComplaint = asyncHandler(async (req, res) => {
+  const complaint = await Complaint.findById(req.params.id);
+
+  if (complaint) {
+    complaint.status = req.body.status || complaint.status;
+
+    const updatedComplaint = await complaint.save();
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        updatedComplaint,
+      },
+    });
+  } else {
+    res.status(404).json({
+      message: "Complaint not found",
+    });
+  }
+});
