@@ -17,7 +17,6 @@ import {
 
 import styles from './styles.module.css';
 import { Form } from 'react-bootstrap';
-
 const CitizenAll = () => {
   const [users, setUsers] = useState([]);
   const [searchNIC, setSearchNIC] = useState('');
