@@ -13,8 +13,8 @@ import {
   Container,
   Divider,
   Chip,
+  Table,
   Paper,
-  Table
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
@@ -78,70 +78,69 @@ export default function PayFine() {
             }}></Chip>
         </Divider>
       </Container>
-      <Box sx={{ alignItems: "center", m: 5 }}>
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-          <Typography variant='subtitle1' sx={{ mr: 1 }}>
-            Search :
-          </Typography>
-          <TextField
-            size='small'
-            variant='outlined'
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </Box>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Citizen ID</TableCell>
-                <TableCell>Citizen Name</TableCell>
-                <TableCell>Fine ID</TableCell>
-                <TableCell>Amount</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Fine Content</TableCell>
-                <TableCell>Fine Evidence</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredFines.map((item) =>
-                item.finesOfCitizens.map((fine) => (
-                  <TableRow key={fine.fineId}>
-                    <TableCell>{item.citizenNIC}</TableCell>
-                    <TableCell>{item.citizenName}</TableCell>
-                    <TableCell>{fine.fineId}</TableCell>
-                    <TableCell>{fine.fineAmount}</TableCell>
-                    <TableCell>
-                      {fine.statusOfPaid ? (
-                        <Button variant='outlined' sx={{ color: "green" }}>
-                          Paid
-                        </Button>
-                      ) : (
-                        <Button variant='outlined' color='error'>
-                          Unpaid
-                        </Button>
-                      )}
-                    </TableCell>
-                    <TableCell>{fine.fineDate}</TableCell>
-                    <TableCell>{fine.fineContent}</TableCell>
-                    <TableCell>{fine.fineEvidence}</TableCell>
-                    <TableCell>
-                      <IconButton aria-label='edit' onClick={() => handleEdit(fine)}>
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton aria-label='delete' onClick={() => handleDelete(fine)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2, ml: 10 }}>
+        <Typography variant='subtitle1' sx={{ mr: 1 }}>
+          Search :
+        </Typography>
+        <TextField
+          size='small'
+          variant='outlined'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </Box>
+      <TableContainer
+        component={Paper}
+        sx={{ width: "fit-content", margin: "auto", backgroundColor: "#fafafa" }}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Citizen ID</TableCell>
+            <TableCell>Citizen Name</TableCell>
+            <TableCell>Fine ID</TableCell>
+            <TableCell>Amount</TableCell>
+            <TableCell>Status</TableCell>
+            <TableCell>Date</TableCell>
+            <TableCell>Fine Content</TableCell>
+            <TableCell>Fine Evidence</TableCell>
+            <TableCell>Action</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {filteredFines.map((item) =>
+            item.finesOfCitizens.map((fine) => (
+              <TableRow key={fine.fineId}>
+                <TableCell>{item.citizenNIC}</TableCell>
+                <TableCell>{item.citizenName}</TableCell>
+                <TableCell>{fine.fineId}</TableCell>
+                <TableCell>{fine.fineAmount}</TableCell>
+                <TableCell>
+                  {fine.statusOfPaid ? (
+                    <Button variant='outlined' sx={{ color: "green" }}>
+                      Paid
+                    </Button>
+                  ) : (
+                    <Button variant='outlined' color='error'>
+                      Unpaid
+                    </Button>
+                  )}
+                </TableCell>
+                <TableCell>{fine.fineDate}</TableCell>
+                <TableCell>{fine.fineContent}</TableCell>
+                <TableCell>{fine.fineEvidence}</TableCell>
+                <TableCell>
+                  <IconButton aria-label='edit' onClick={() => handleEdit(fine)}>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton aria-label='delete' onClick={() => handleDelete(fine)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
+        </TableBody>
+      </TableContainer>
     </Box>
   );
 }
