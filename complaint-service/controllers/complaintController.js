@@ -1,5 +1,5 @@
-import Complaint from "../models/complaintModel.js";
-import asyncHandler from "express-async-handler";
+import Complaint from '../models/complaintModel.js';
+import asyncHandler from 'express-async-handler';
 
 //add a complaint
 export const addComplaint = asyncHandler(async (req, res) => {
@@ -8,7 +8,7 @@ export const addComplaint = asyncHandler(async (req, res) => {
   try {
     // Generate the complaintID
     const count = await Complaint.countDocuments({});
-    const complaintID = `CI${String(count + 1).padStart(5, "0")}`;
+    const complaintID = `CI${String(count + 1).padStart(5, '0')}`;
 
     // Create the new complaint document
     const complaint = await Complaint.create({
@@ -18,18 +18,18 @@ export const addComplaint = asyncHandler(async (req, res) => {
       category,
       description,
       evidence,
-      status,
+      status: 'Processing',
     });
 
     res.status(201).json({
-      status: "success",
+      status: 'success',
       data: {
         complaint,
       },
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: 'fail',
       message: error.message,
     });
   }
@@ -50,7 +50,7 @@ export const getComplaintById = asyncHandler(async (req, res) => {
     res.status(200).json(complaint);
   } else {
     res.status(404).json({
-      message: "Complaint not found",
+      message: 'Complaint not found',
     });
   }
 });
@@ -65,14 +65,26 @@ export const updateComplaint = asyncHandler(async (req, res) => {
     const updatedComplaint = await complaint.save();
 
     res.status(200).json({
-      status: "success",
+      status: 'success',
       data: {
         updatedComplaint,
       },
     });
   } else {
     res.status(404).json({
-      message: "Complaint not found",
+      message: 'Complaint not found',
+    });
+  }
+});
+
+export const getComplaintByNIC = asyncHandler(async (req, res) => {
+  const complaint = await Complaint.find({ nic: req.params.nic });
+
+  if (complaint) {
+    res.status(200).json(complaint);
+  } else {
+    res.status(404).json({
+      message: 'Complaint not found',
     });
   }
 });
