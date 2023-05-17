@@ -3,27 +3,37 @@ import fs from "fs";
 import Vehicle from "../models/vehicleModel.js";
 import asyncHandler from "express-async-handler";
 //add a vehicle to the database
-export const addVehicleController1 = asyncHandler(async (req, res) => {
+export const addVehicleControllerByHand = asyncHandler(async (req, res) => {
   const {
-    regno,
-    chassisNo,
+    regNo,
+    chassiNo,
     vehicleType,
     color,
     vehicleModel,
     yearOfManufacture,
-    vehicleOwners,
+    owners,
     status,
   } = req.body;
 
+  console.log(
+    regNo,
+    chassiNo,
+    vehicleType,
+    color,
+    vehicleModel,
+    yearOfManufacture,
+    owners,
+    status
+  );
   try {
     const vehicle = await Vehicle.create({
-      regno,
-      chassisNo,
+      regNo: regNo,
+      chassiNo: chassiNo,
       vehicleType,
       color,
       vehicleModel,
       yearOfManufacture,
-      vehicleOwners,
+      vehicleOwners: owners,
       status,
     });
 
@@ -137,6 +147,27 @@ export const deleteVehicleController = asyncHandler(async (req, res) => {
   if (vehicle) {
     await vehicle.deleteOne();
     res.json({ message: "Vehicle removed" });
+  } else {
+    res.status(404);
+    throw new Error("Vehicle not found");
+  }
+});
+
+//search vehicle by NIC
+export const searchVehicleByOwnerName = asyncHandler(async (req, res) => {
+  const NIC = req.params.nic;
+
+  if (!NIC) {
+    res.status(400);
+    throw new Error("Owner name is missing");
+  }
+
+  const vehicles = await Vehicle.find({
+    vehicleOwners: { $regex: NIC.toString(), $options: "i" },
+  });
+
+  if (vehicles) {
+    res.status(200).json(vehicles);
   } else {
     res.status(404);
     throw new Error("Vehicle not found");
