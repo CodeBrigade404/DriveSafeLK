@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "react-datepicker/dist/react-datepicker.css";
-import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
-import Box from "@mui/material/Box";
-import { Container } from "@mui/material";
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import 'react-datepicker/dist/react-datepicker.css';
+import Divider from '@mui/material/Divider';
+import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
 import {
+  Container,
   Table,
   TableBody,
   TableCell,
@@ -14,19 +13,19 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from "@material-ui/core";
-import styles from "./styles.module.css";
-import { Form } from "react-bootstrap";
+} from '@mui/material';
 
+import styles from './styles.module.css';
+import { Form } from 'react-bootstrap';
 const CitizenAll = () => {
   const [users, setUsers] = useState([]);
-  const [searchNIC, setSearchNIC] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [searchNIC, setSearchNIC] = useState('');
+  const [sortOrder, setSortOrder] = useState('asc');
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:1671/getAllUser");
+        const response = await axios.get('http://localhost:1671/getAllUser');
         setUsers(response.data);
       } catch (error) {
         console.error(error);
@@ -36,13 +35,13 @@ const CitizenAll = () => {
   }, []);
 
   const handleSort = () => {
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
   const filteredUsers = users
     .filter(
       (user) =>
-        (searchNIC === "" || user.nic === searchNIC) &&
+        (searchNIC === '' || user.nic === searchNIC) &&
         (user.firstname.toLowerCase().includes(searchNIC.toLowerCase()) ||
           user.nic.toLowerCase().includes(searchNIC.toLowerCase()))
     )
@@ -50,7 +49,7 @@ const CitizenAll = () => {
       const dobA = new Date(a.dob);
       const dobB = new Date(b.dob);
 
-      if (sortOrder === "asc") {
+      if (sortOrder === 'asc') {
         return dobA - dobB;
       } else {
         return dobB - dobA;
@@ -62,19 +61,21 @@ const CitizenAll = () => {
       sx={{
         pt: 6,
         pb: 6,
-      }}>
+      }}
+    >
       <Container>
         <Divider>
           <Chip
             label='View Citizen Registration'
             component='h1'
             sx={{
-              color: "white",
-              backgroundColor: "#263238",
-              fontSize: "23px",
-              fontWeight: "bold",
-              fontFamily: "Roboto",
-            }}></Chip>
+              color: 'white',
+              backgroundColor: '#263238',
+              fontSize: '23px',
+              fontWeight: 'bold',
+              fontFamily: 'Roboto',
+            }}
+          ></Chip>
         </Divider>
       </Container>
       <div>
@@ -117,9 +118,9 @@ const CitizenAll = () => {
                 <TableRow key={user._id}>
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{user.firstname}</TableCell>
-                  <TableCell>{user.middleName || "-"}</TableCell>
+                  <TableCell>{user.middleName || '-'}</TableCell>
                   <TableCell>{user.lastName}</TableCell>
-                  <TableCell>{user.nic || "-"}</TableCell>
+                  <TableCell>{user.nic || '-'}</TableCell>
                   <TableCell>{user.gender}</TableCell>
                   <TableCell>{user.address}</TableCell>
                   <TableCell>{user.mobileNo}</TableCell>
