@@ -65,12 +65,15 @@ export default function ViewSingleComplaint() {
 
   const replySubmitHandler = async () => {
     try {
-      // await axios.patch(
-      //   `http://localhost:5300/api/complaints/reply /${complaintId}`,
-      //   {
-      //     reply,
-      //   }
-      // );
+      const res = await axios.patch(
+        `http://localhost:5300/api/complaints/reply/${complaint._id}`,
+        { reply: complaint.reply }
+      );
+      if (res.data.status === "success") {
+        alert("Reply sent successfully");
+      } else {
+        alert("Something went wrong");
+      }
     } catch (error) {
       console.error("Error updating complaint status:", error);
     }
@@ -206,14 +209,14 @@ export default function ViewSingleComplaint() {
                 align="left"
                 sx={{ m: "0 0 5px 0" }}
               >
-                reply
+                Reply
               </Typography>
               <TextField
                 sx={{ width: "100%" }}
                 id="filled-multiline-static"
                 label="Add reply here"
                 multiline
-                rows={4}
+                rows={7}
                 variant="filled"
                 onChange={replyHandler}
                 value={complaint.reply}
