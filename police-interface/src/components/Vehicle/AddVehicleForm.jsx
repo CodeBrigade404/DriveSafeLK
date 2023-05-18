@@ -23,19 +23,24 @@ const Form = () => {
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleFormSubmit = (values) => {
     console.log(values);
+    console.log("res");
     const res = axios
       //http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles
       .post("http://3.26.196.154:5200/api/vehicles/add", values)
       .then((response) => {
+        console.log("res");
         console.log("Form submitted successfully!");
         alert("Vehicle Added Successfully");
-        window.location.href = "http://localhost:3000/vehicles/";
+        navigate("/vehicles");
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
+
+        setErrorMessage(error.response.data.message);
       });
   };
 
@@ -194,7 +199,7 @@ const Form = () => {
                 <TextField
                   fullWidth
                   variant="filled"
-                  type="text"
+                  type="number"
                   label="Year of Manufacture"
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -296,6 +301,17 @@ const Form = () => {
                   Add a New Vehicle
                 </Button>
               </Box>
+              <Box>
+                {errorMessage && (
+                  <Typography
+                    variant="body1"
+                    color="error"
+                    sx={{ mt: 2, textAlign: "right" }}
+                  >
+                    {errorMessage}
+                  </Typography>
+                )}
+              </Box>
             </form>
           )}
         </Formik>
@@ -334,7 +350,7 @@ const Form = () => {
             Upload the csv File
           </Button>
         </Box>
-      </Box>{" "}
+      </Box>
     </Box>
   );
 };
