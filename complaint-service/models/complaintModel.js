@@ -32,6 +32,10 @@ const complaintSchema = new mongoose.Schema(
       required: true,
       enum: ["Processing", "Resolved"],
     },
+    reply: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );
