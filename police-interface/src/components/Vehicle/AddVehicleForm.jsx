@@ -52,11 +52,15 @@ const Form = () => {
       formData.append("file", selectedFile);
 
       axios
-        .post("http://localhost:5200/api/vehicles", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
+        .post(
+          "http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
         .then((response) => {
           console.log("File uploaded successfully!");
           console.log(response);
