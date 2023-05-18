@@ -5,7 +5,7 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button, TextField } from "@mui/material";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import axios from "axios";
@@ -55,6 +55,27 @@ export default function ViewSingleComplaint() {
       console.error("Error updating complaint status:", error);
     }
   };
+
+  const replyHandler = (e) => {
+    setComplaint((prevComplaint) => ({
+      ...prevComplaint,
+      reply: e.target.value,
+    }));
+  };
+
+  const replySubmitHandler = async () => {
+    try {
+      // await axios.patch(
+      //   `http://localhost:5300/api/complaints/reply /${complaintId}`,
+      //   {
+      //     reply,
+      //   }
+      // );
+    } catch (error) {
+      console.error("Error updating complaint status:", error);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -176,6 +197,46 @@ export default function ViewSingleComplaint() {
                   ))}
                 </ImageList>
               </Item>
+            </Grid>
+            <Grid item xs={10}>
+              <Typography
+                variant="h6"
+                color={"#040509"}
+                fontWeight="bold"
+                align="left"
+                sx={{ m: "0 0 5px 0" }}
+              >
+                reply
+              </Typography>
+              <TextField
+                sx={{ width: "100%" }}
+                id="filled-multiline-static"
+                label="Add reply here"
+                multiline
+                rows={4}
+                variant="filled"
+                onChange={replyHandler}
+                value={complaint.reply}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Button
+                sx={{
+                  backgroundColor: "#263238",
+                  mt: 5,
+                  width: "80%",
+                  color: "#ffffff",
+                  fontWeight: "bold",
+                  fontFamily: "Roboto",
+                  "&:hover": {
+                    backgroundColor: "#263238",
+                  },
+                  fontSize: "15px",
+                }}
+                onClick={replySubmitHandler}
+              >
+                add
+              </Button>
             </Grid>
           </Grid>
         </Box>

@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 const router = express.Router();
 
 import {
@@ -7,20 +7,25 @@ import {
   getComplaintById,
   updateComplaint,
   getComplaintByNIC,
-} from '../controllers/complaintController.js';
+  updateReply,
+} from "../controllers/complaintController.js";
 
 //get all complaints
-router.get('/', getAllComplaints);
+router.get("/", getAllComplaints);
 
 //add complaint
-router.post('/', addComplaint);
+router.post("/", addComplaint);
 
 //get a complaint by id
-router.get('/:id', getComplaintById);
+router.get("/:id", getComplaintById);
 
-router.get('/nic/:nic', getComplaintByNIC);
+//get a complaint by nic
+router.get("/nic/:nic", getComplaintByNIC);
 
 //update a complaint
-router.patch('/:id', updateComplaint);
+router.patch("/:id", updateComplaint);
+
+//update complaint reply
+router.patch("/reply/:id", updateReply);
 
 export default router;
