@@ -12,10 +12,12 @@ const VehicleTable = () => {
   const addHandler = () => {
     window.location.href = "http://localhost:3000/vehicles/add";
   };
-
+  //http://3.26.196.154:5200/api/vehicles
   useEffect(() => {
     const fetchVehicles = async () => {
-      const { data } = await axios.get("http://13.210.25.126/api/vehicles/");
+      const { data } = await axios.get(
+        "http://3.26.196.154:5200/api/vehicles/"
+      );
 
       setVehicles(data);
     };
