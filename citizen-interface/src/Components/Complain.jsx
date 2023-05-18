@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 function Complain() {
   const [complain, setComplain] = useState([]);
   const getComplain = async () => {
-    const response = await fetch('http://localhost:5300/api/complaints/');
+    const response = await fetch(
+      'http://3.26.255.165:5300/api/complaints/nic/200026401823'
+    );
     const data = await response.json();
     setComplain(data);
   };
@@ -23,11 +25,6 @@ function Complain() {
           </div>
         ))}
       </div>
-
-      {/* <h1>Complain</h1>
-      {complain.map((complain) => (
-        <h1>{complain.nic}</h1>
-      ))} */}
     </div>
   );
 }

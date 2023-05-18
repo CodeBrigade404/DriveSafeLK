@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Time from '../Components/SriLankaTime';
 import Qrcode from '../Components/Qrcode';
@@ -12,6 +12,11 @@ import Vehibutton from '../Components/Vehibutton';
 import prof from '../assets/profilepic.png';
 
 function Homepage() {
+  const [download, setDownload] = useState({});
+
+  useEffect(() => {
+    console.log(download);
+  }, [download]);
   const person = {
     profile: prof,
     nic: '200026401824',
@@ -43,8 +48,8 @@ function Homepage() {
         {activeButtonIndex === 1 && <Fine />}
         {activeButtonIndex === 2 && <Complain />}
         {activeButtonIndex === 2 && <CForm />}
-        {activeButtonIndex === 3 && <Vehicles />}
-        {activeButtonIndex === 3 && <Vehibutton />}
+        {activeButtonIndex === 3 && <Vehicles setDownload={setDownload} />}
+        {activeButtonIndex === 3 && <Vehibutton download={download} />}
       </div>
     </div>
   );
