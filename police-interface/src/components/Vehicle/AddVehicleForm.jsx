@@ -25,15 +25,19 @@ const Form = () => {
   const handleFormSubmit = (values) => {
     console.log(values);
     const res = axios
-      .post("http://localhost:5200/api/vehicles/add", values)
+      //http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles
+      .post(
+        "http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles/add",
+        values
+      )
       .then((response) => {
         console.log("Form submitted successfully!");
+        alert("Vehicle Added Successfully");
+        window.location.href = "http://localhost:3000/vehicles/";
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
       });
-    alert("Vehicle Added Successfully");
-    window.location.href = "http://localhost:3000/vehicles/";
   };
 
   const handleFileChange = (event) => {
@@ -55,6 +59,7 @@ const Form = () => {
         })
         .then((response) => {
           console.log("File uploaded successfully!");
+          console.log(response);
           alert("File Uploaded and Vehicles Added Successfully");
           window.location.href = "http://localhost:3000/vehicles/";
         })
