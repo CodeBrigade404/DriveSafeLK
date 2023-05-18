@@ -12,10 +12,12 @@ const VehicleTable = () => {
   const addHandler = () => {
     window.location.href = "http://localhost:3000/vehicles/add";
   };
-
+  //http://3.26.196.154:5200/api/vehicles
   useEffect(() => {
     const fetchVehicles = async () => {
-      const { data } = await axios.get("http://13.210.25.126/api/vehicles/");
+      const { data } = await axios.get(
+        "http://3.26.196.154:5200/api/vehicles/"
+      );
 
       setVehicles(data);
     };
@@ -67,26 +69,29 @@ const VehicleTable = () => {
         pb: 6,
       }}
     >
-      <Container>
-        <Divider>
-          <Chip
-            label="Authorized Vehicles"
-            component="h1"
-            sx={{
-              color: "white",
-              backgroundColor: "#263238",
-              fontSize: "23px",
-              fontWeight: "bold",
-              fontFamily: "Roboto",
-            }}
-          ></Chip>
-        </Divider>
-        <Box>
+      <Box>
+        <Container>
+          <Divider>
+            <Chip
+              label="Authorized Vehicles"
+              component="h1"
+              sx={{
+                color: "white",
+                backgroundColor: "#263238",
+                fontSize: "23px",
+                fontWeight: "bold",
+                fontFamily: "Roboto",
+              }}
+            ></Chip>
+          </Divider>
+        </Container>
+        <Box
+          sx={{ marginLeft: "83%", marginRight: "auto", width: "fit-content" }}
+        >
           <Button
             variant="contained"
             onClick={addHandler}
             sx={{
-              marginLeft: 140,
               height: "30px",
               width: "150px",
               backgroundColor: "#263238",
@@ -98,7 +103,7 @@ const VehicleTable = () => {
             Add a Vehicle
           </Button>
         </Box>
-      </Container>
+      </Box>
       <Box
         height="75vh"
         sx={{
