@@ -16,8 +16,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const VehicleDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   console.log(id);
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -67,10 +69,9 @@ const VehicleDetails = () => {
     axios
       .delete(`http://3.26.196.154:5200/api/vehicles/${id}`)
       .then((response) => {
-        console.log("Form Editeds successfully!");
         console.log("deleted");
         alert("Vehicle Deleted Successfully");
-        window.location.href = "http://localhost:3000/vehicles/";
+        navigate("/vehicles");
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
