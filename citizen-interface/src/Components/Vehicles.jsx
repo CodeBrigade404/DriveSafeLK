@@ -8,7 +8,7 @@ function Vehicles() {
   const getVehicle = async () => {
     try {
       const response = await axios.get(
-        'http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles/search_nic/200026401824'
+        'http://52.62.234.207:5200/api/vehicles/search_nic/200026401824'
       );
       setVehicle(response.data);
     } catch (error) {
