@@ -17,8 +17,10 @@ import Chip from "@mui/material/Chip";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -58,7 +60,7 @@ const Form = () => {
           console.log("File uploaded successfully!");
           console.log(response);
           alert("File Uploaded and Vehicles Added Successfully");
-          window.location.href = "http://localhost:3000/vehicles/";
+          navigate("/vehicles");
         })
         .catch((error) => {
           console.error("Error uploading file:", error);

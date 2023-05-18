@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 
 const VehicleTable = () => {
   const [vehicles, setVehicles] = useState([]);
-  const addHandler = () => {
-    window.location.href = "http://localhost:3000/vehicles/add";
-  };
+
+  // const addHandler = () => {
+  //   window.location.href = "http://localhost:3000/vehicles/add";
+  // };
   //http://3.26.196.154:5200/api/vehicles
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -88,20 +89,22 @@ const VehicleTable = () => {
         <Box
           sx={{ marginLeft: "83%", marginRight: "auto", width: "fit-content" }}
         >
-          <Button
-            variant="contained"
-            onClick={addHandler}
-            sx={{
-              height: "30px",
-              width: "150px",
-              backgroundColor: "#263238",
-              "&:hover": {
+          <Link to="/vehicles/add">
+            <Button
+              variant="contained"
+              //onClick={addHandler}
+              sx={{
+                height: "30px",
+                width: "150px",
                 backgroundColor: "#263238",
-              },
-            }}
-          >
-            Add a Vehicle
-          </Button>
+                "&:hover": {
+                  backgroundColor: "#263238",
+                },
+              }}
+            >
+              Add a Vehicle
+            </Button>
+          </Link>
         </Box>
       </Box>
       <Box
