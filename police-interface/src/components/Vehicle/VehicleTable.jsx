@@ -15,7 +15,9 @@ const VehicleTable = () => {
 
   useEffect(() => {
     const fetchVehicles = async () => {
-      const { data } = await axios.get("http://localhost:5200/api/vehicles");
+      const { data } = await axios.get(
+        "http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles"
+      );
 
       setVehicles(data);
     };

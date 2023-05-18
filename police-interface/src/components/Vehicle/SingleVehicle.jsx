@@ -35,7 +35,9 @@ const VehicleDetails = () => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5200/api/vehicles/search_id/${id}`)
+    fetch(
+      `http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles/search_id/${id}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setInitialValues(data);
@@ -52,29 +54,34 @@ const VehicleDetails = () => {
   const handleFormSubmit = (values) => {
     console.log(values);
     axios
-      .patch(`http://localhost:5200/api/vehicles/${id}`, values)
+      .patch(
+        `http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles/${id}`,
+        values
+      )
       .then((response) => {
         console.log("Form Editeds successfully!");
+        alert("Vehicle Updated Successfully");
+        setIsEditing(false);
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
       });
-    alert("Vehicle Updated Successfully");
-    setIsEditing(false);
   };
 
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:5200/api/vehicles/${id}`)
+      .delete(
+        `http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles/${id}`
+      )
       .then((response) => {
         console.log("Form Editeds successfully!");
+        console.log("deleted");
+        alert("Vehicle Deleted Successfully");
+        window.location.href = "http://localhost:3000/vehicles/";
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
       });
-    console.log("deleted");
-    alert("Vehicle Deleted Successfully");
-    window.location.href = "http://localhost:3000/vehicles/";
   };
 
   return (
