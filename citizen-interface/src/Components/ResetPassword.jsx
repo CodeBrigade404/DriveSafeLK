@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import styles from "./styles.module.css";
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import styles from './stylesp.module.css';
 
 const ResetPassword = () => {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [resetStatus, setResetStatus] = useState(null);
 
   const { token } = useParams();
@@ -31,17 +31,17 @@ const ResetPassword = () => {
           <h2>Reset Password</h2>
           <div className={styles.form_container}>
             <input
-              type="password"
+              type='password'
               onChange={(e) => setNewPassword(e.target.value)}
               className={styles.input}
-              placeholder="Password"
+              placeholder='Password'
             />
 
             <input
-              type="password"
+              type='password'
               onChange={(e) => setConfirmPassword(e.target.value)}
               className={styles.input}
-              placeholder="comfirm Password"
+              placeholder='comfirm Password'
             />
 
             <button onClick={resetPassword} className={styles.greenbtn}>
