@@ -1,6 +1,13 @@
 import React from 'react';
 
 function Home({ person }) {
+  const handleLogout = () => {
+    if (document.cookie) {
+      document.cookie = "userData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.href = "/login"; 
+    }
+  };
+
   return (
     <div className='ml-[50rem] mt-[4rem] flex flex-col w-[30rem] h-[31rem] bg-[#F8F9FA] drop-shadow-2xl shadow-[#405C5C] rounded-3xl'>
       <img
@@ -33,7 +40,8 @@ function Home({ person }) {
         <button className='rounded-full ease-in-out  hover:bg-[#405D5C] hover:text-[#FDFDFD]  bg-[#fdfdfd] px-5 py-2  mx-4 shadow-2xl  my-2 '>
           Change Password
         </button>
-        <button className='rounded-full ease-in-out  hover:bg-[#ff6363] hover:text-[#FDFDFD]  bg-[#fdfdfd] px-5 py-2  mx-4 shadow-2xl  my-2 '>
+        <button className='rounded-full ease-in-out  hover:bg-[#ff6363] hover:text-[#FDFDFD]  bg-[#fdfdfd] px-5 py-2  mx-4 shadow-2xl  my-2 '
+        onClick={handleLogout}>
           Logout
         </button>
       </div>
