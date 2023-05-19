@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:1670/login";
+      const url = "http://13.239.53.12:1670/login";
       const { data: res } = await axios.post(url, data);
       const { token } = res.data;
       sessionStorage.setItem("token", token);

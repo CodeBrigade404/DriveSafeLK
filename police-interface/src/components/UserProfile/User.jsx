@@ -41,7 +41,7 @@ const UserData = () => {
   useEffect(() => {
     if (userData) {
       axios
-        .get(`http://localhost:1670/getuser/${userData}`)
+        .get(`http://13.239.53.12:1670/getuser/${userData}`)
         .then((response) => {
           setCartItems(response.data);
           console.log(setCartItems);
