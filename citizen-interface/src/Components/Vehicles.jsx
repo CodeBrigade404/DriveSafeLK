@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Vehicles() {
+function Vehicles({ setDownload, refresh }) {
   const [vehicle, setVehicle] = useState([]);
   const [numberplates, setNumberplates] = useState([]);
+  const [activeVehicle, setActiveVehicle] = useState(0);
 
   const getVehicle = async () => {
     try {
       const response = await axios.get(
-        'http://52.62.234.207:80/api/vehicles/search_nic/200026401824'
+        'http://3.26.196.154:5200/api/vehicles/search_nic/200026401824'
       );
       setVehicle(response.data);
     } catch (error) {
@@ -23,11 +24,17 @@ function Vehicles() {
 
   useEffect(() => {
     getVehicle();
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     extractNumberplates();
   }, [vehicle]);
+
+  useEffect(() => {
+    if (vehicle.length > 0) {
+      setDownload(vehicle[activeVehicle]);
+    }
+  }, [activeVehicle, vehicle, setDownload]);
 
   return (
     <div className='ml-[26rem] overflow-y-auto mt-[4rem] w-[40rem] h-[31rem] bg-[#F8F9FA] drop-shadow-2xl shadow-[#405C5C] rounded-3xl'>
@@ -35,11 +42,15 @@ function Vehicles() {
         {numberplates.map((numberplate, index) => (
           <span
             className={`mx-1 rounded-xl my-1 flex flex-col place-content-center text-center w-[10rem] h-[5rem] drop-shadow-lg ${
-              index === 4
+              index === activeVehicle
                 ? 'bg-slate-300 mx-1 rounded-xl my-1 flex flex-col place-content-center text-center w-[10rem] h-[5rem] drop-shadow-lg'
                 : 'bg-slate-100'
-            }`}
+            } `}
             key={numberplate}
+            style={{
+              color: vehicle[index]?.status === 'stolen' ? 'red' : 'inherit',
+            }}
+            onClick={() => setActiveVehicle(index)}
           >
             {numberplate}
           </span>

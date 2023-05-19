@@ -27,7 +27,7 @@ export default function ViewSingleComplaint() {
     const fetchComplaint = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5300/api/complaints/${id}`
+          `http://3.26.255.165:5300/api/complaints/${id}`
         );
         setComplaint(response.data);
       } catch (error) {
@@ -36,7 +36,7 @@ export default function ViewSingleComplaint() {
     };
 
     fetchComplaint();
-  }, []);
+  }, [id]);
 
   if (!complaint) {
     return <div>Loading...</div>; // or show a loading spinner
@@ -44,9 +44,12 @@ export default function ViewSingleComplaint() {
 
   const handleStatusChange = async (complaintId, status) => {
     try {
-      await axios.patch(`http://localhost:5300/api/complaints/${complaintId}`, {
-        status,
-      });
+      await axios.patch(
+        `http://3.26.255.165:5300/api/complaints/${complaintId}`,
+        {
+          status,
+        }
+      );
       setComplaint((prevComplaint) => ({
         ...prevComplaint,
         status: status,
@@ -66,7 +69,7 @@ export default function ViewSingleComplaint() {
   const replySubmitHandler = async () => {
     try {
       const res = await axios.patch(
-        `http://localhost:5300/api/complaints/reply/${complaint._id}`,
+        `http://3.26.255.165:5300/api/complaints/reply/${complaint._id}`,
         { reply: complaint.reply }
       );
       if (res.data.status === "success") {
