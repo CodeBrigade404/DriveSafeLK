@@ -9,10 +9,12 @@ import { Link } from "react-router-dom";
 
 const ComplaintTable = () => {
   const [complaints, setComplaints] = useState([]);
-
+  //http://3.26.255.165:5300/api/complaints/nic/200026401823
   const handleStatusChange = (complaintId, status) => {
     axios
-      .patch(`http://localhost:5300/api/complaints/${complaintId}`, { status })
+      .patch(`http://3.26.255.165:5300/api/complaints/${complaintId}`, {
+        status,
+      })
       .then((response) => {
         // update the status of the complaint in the state
         const updatedComplaints = complaints.map((complaint) =>
@@ -27,7 +29,7 @@ const ComplaintTable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5300/api/complaints")
+      .get("http://3.26.255.165:5300/api/complaints")
       .then((response) => {
         setComplaints(response.data);
       })
