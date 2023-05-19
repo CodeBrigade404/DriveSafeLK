@@ -22,10 +22,10 @@ import CitizenAll from "./components/CitizenAllView/citizenAllView";
 import ResetPassword from "./components/UserProfile/resetPassword";
 import ForgetPassword from "./components/UserProfile/forgetPassword";
 import RegistrationForm from "./components/AdminRegister/Register";
-
+import AddFines from "./components/PayFine/AddFine";
 // Create a custom LocationContext
 const LocationContext = createContext();
-import AddFines from "./components/PayFine/AddFine";
+
 
 function App() {
   const location = window.location.pathname;
