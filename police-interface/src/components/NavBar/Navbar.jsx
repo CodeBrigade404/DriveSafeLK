@@ -17,6 +17,16 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import TemporaryDrawer from "./SideNavBar";
 import LocalPoliceOutlinedIcon from "@mui/icons-material/LocalPoliceOutlined";
+import { Link } from "react-router-dom";
+
+
+const handleLogout = () => {
+  if (document.cookie) {
+    document.cookie = "userData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = "/login"; 
+  }
+};
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -113,8 +123,10 @@ export default function PrimarySearchAppBar() {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}>
+        <Link to='/user' style={{ textDecoration: "none", color: "black" }}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </Link>
+      <MenuItem onClick={handleLogout}>LogOut</MenuItem>
     </Menu>
   );
 
@@ -229,6 +241,17 @@ export default function PrimarySearchAppBar() {
               <MoreIcon />
             </IconButton>
           </Box>
+          <IconButton
+            size="large"
+            edge="end"
+            aria-label="logout"
+            color="inherit"
+            onClick={handleLogout}
+          >
+            <Typography variant="body1" noWrap>
+              Logout
+            </Typography>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <TemporaryDrawer state={state} setState={setState} toggleDrawer={toggleDrawer} />
