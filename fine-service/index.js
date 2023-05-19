@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-
 dbConnection();
 
 app.use("/driveSafe/payfine", fineRoutes);

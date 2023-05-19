@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Vehicles({ setDownload }) {
+function Vehicles({ setDownload, refresh }) {
   const [vehicle, setVehicle] = useState([]);
   const [numberplates, setNumberplates] = useState([]);
   const [activeVehicle, setActiveVehicle] = useState(0);
@@ -24,7 +24,7 @@ function Vehicles({ setDownload }) {
 
   useEffect(() => {
     getVehicle();
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     extractNumberplates();
@@ -47,6 +47,9 @@ function Vehicles({ setDownload }) {
                 : 'bg-slate-100'
             } `}
             key={numberplate}
+            style={{
+              color: vehicle[index]?.status === 'stolen' ? 'red' : 'inherit',
+            }}
             onClick={() => setActiveVehicle(index)}
           >
             {numberplate}

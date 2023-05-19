@@ -8,10 +8,6 @@ function App() {
       path: '/',
       element: <Home />,
     },
-    {
-      path: '/about',
-      element: <div>About</div>,
-    },
   ]);
   return <RouterProvider router={router} />;
 }

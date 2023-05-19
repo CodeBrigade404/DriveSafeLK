@@ -25,6 +25,7 @@ import RegistrationForm from "./components/AdminRegister/Register";
 
 // Create a custom LocationContext
 const LocationContext = createContext();
+import AddFines from "./components/PayFine/AddFine";
 
 function App() {
   const location = window.location.pathname;
@@ -42,6 +43,7 @@ function App() {
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/recognitions" element={<Recognition />} />
             <Route path="/payfine" element={<Payfine />} />
+            <Route path='/addfine' element={<AddFines />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/licenses" element={<Licenses />} />
             <Route path="/emergency" element={<Emergency />} />
@@ -63,7 +65,6 @@ function App() {
             </Route>
           </Routes>
         </LocationContext.Provider>
-      
         <Footer />
       </BrowserRouter>
     </div>
