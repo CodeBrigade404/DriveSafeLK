@@ -15,13 +15,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:1671/login";
+      const url = "http://52.62.90.166:1671/login";
       const { data: res } = await axios.post(url, data);
       const { token } = res.data;
       sessionStorage.setItem("token", token);
 
       const decoded = jwt_decode(token);
-      const expiryTime = new Date(Date.now() + 50 * 60 * 1000); // 20 minutes from now
+      const expiryTime = new Date(Date.now() + 50 * 60 * 1000);  
 
       document.cookie = `userData=${JSON.stringify(decoded)}; path=/; expires=${expiryTime.toUTCString()};`;
       
