@@ -2,14 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 
-function CForm() {
+function CForm({ setRefresh }) {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const complain = {
-      nic: '200026401823',
+      nic: '200026401824',
       name: 'Kris Hemsworth',
       category,
       description,
@@ -23,6 +23,7 @@ function CForm() {
     await axios.post('http://3.26.255.165:5300/api/complaints', complain);
     setCategory('');
     setDescription('');
+    setRefresh((current) => !current);
   };
   return (
     <div className='absolute flex flex-col mt-[-31rem] ml-[25rem] text-[#405D5C] w-[23rem] rounded-3xl h-[31rem] pl-3 pt-3 pr-3 bg-[#F8F9FA] drop-shadow-2xl shadow-[#405C5C]'>
