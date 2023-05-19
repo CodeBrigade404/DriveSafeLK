@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Home({ person }) {
   const handleLogout = () => {
@@ -37,9 +39,12 @@ function Home({ person }) {
         <span className='w-[30rem]'>{person.Special}</span>
       </div>
       <div className='  ml-[2rem] mt-[1rem] text-sm font-montserrat flex flex-row text-[#405C5C]'>
+      <Link to="/forgetPassword">   
+
         <button className='rounded-full ease-in-out  hover:bg-[#405D5C] hover:text-[#FDFDFD]  bg-[#fdfdfd] px-5 py-2  mx-4 shadow-2xl  my-2 '>
           Change Password
         </button>
+        </Link>
         <button className='rounded-full ease-in-out  hover:bg-[#ff6363] hover:text-[#FDFDFD]  bg-[#fdfdfd] px-5 py-2  mx-4 shadow-2xl  my-2 '
         onClick={handleLogout}>
           Logout
