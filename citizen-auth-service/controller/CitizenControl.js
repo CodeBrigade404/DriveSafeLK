@@ -309,6 +309,18 @@ const getAlluser = async (req, res) => {
   }
 };
 
+const getuser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await Customer.findById(userId);
+    
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+};
+
 export {
   register,
   login,
@@ -318,4 +330,5 @@ export {
   resetPasswordcon,
   changePassword,
   getAlluser,
+  getuser,
 };
