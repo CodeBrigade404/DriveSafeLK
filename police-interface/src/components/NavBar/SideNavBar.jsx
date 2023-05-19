@@ -16,6 +16,7 @@ import WarningIcon from "@mui/icons-material/Warning";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
@@ -24,7 +25,7 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer }) {
     "Citizen Registration": <HowToRegIcon />,
     Analytics: <AnalyticsIcon />,
     "Pay Fines": <PaymentIcon />,
-    "Find Vehicle": <FindInPageIcon />,
+    Vehicles: <DirectionsCarIcon />,
     Recognitions: <CameraAltIcon />,
     Reports: <DescriptionIcon />,
     Emergency: <WarningIcon />,
