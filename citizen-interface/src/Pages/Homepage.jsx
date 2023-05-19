@@ -17,6 +17,10 @@ function Homepage() {
   const [refresh, setRefresh] = useState(false);
   const [userData, setUserData] = useState("");
   const [cartItems, setCartItems] = useState([]);
+  const [usernic, setNic] = useState("");
+
+ 
+
 
   useEffect(() => {
     const cookieValue = document.cookie
@@ -55,13 +59,17 @@ const age = today.getFullYear() - dob.getFullYear();
   const person = {
     profile: prof,
     nic: cartItems.nic,
-    name: cartItems.firstname,
+    name: cartItems.firstname + cartItems.middleName +" "+ cartItems.lastName,
     age: age,
     mobile: cartItems.mobileNo,
     Special: 'Shoud wear contact lensces',
   };
   const text = person.nic;
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
+
+  useEffect(() => {
+    setNic(person.nic);
+  }, [person.nic]);
 
   const handleClick = (index) => {
     setActiveButtonIndex(index);
@@ -81,10 +89,10 @@ const age = today.getFullYear() - dob.getFullYear();
         {activeButtonIndex === 0 && <Home person={person} />}
         {activeButtonIndex === 0 && <Candrive />}
         {activeButtonIndex === 1 && <Fine />}
-        {activeButtonIndex === 2 && <Complain refresh={refresh} />}
+        {activeButtonIndex === 2 && <Complain refresh={refresh} usernic={usernic}/>}
         {activeButtonIndex === 2 && <CForm setRefresh={setRefresh} />}
         {activeButtonIndex === 3 && (
-          <Vehicles setDownload={setDownload} refresh={refresh} />
+          <Vehicles setDownload={setDownload} refresh={refresh} usernic={usernic}/>
         )}
         {activeButtonIndex === 3 && (
           <Vehibutton download={download} setRefresh={setRefresh} />
