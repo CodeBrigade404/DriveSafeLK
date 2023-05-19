@@ -15,18 +15,15 @@ import axios from 'axios';
 function Homepage() {
   const [download, setDownload] = useState({});
   const [refresh, setRefresh] = useState(false);
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState('');
   const [cartItems, setCartItems] = useState([]);
-  const [usernic, setNic] = useState("");
-
- 
-
+  const [usernic, setNic] = useState('');
 
   useEffect(() => {
     const cookieValue = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("userData="))
-      ?.split("=")[1];
+      .split('; ')
+      .find((row) => row.startsWith('userData='))
+      ?.split('=')[1];
 
     if (cookieValue) {
       const userDataObj = JSON.parse(cookieValue);
@@ -35,31 +32,28 @@ function Homepage() {
   }, []);
   console.log(userData);
 
- 
-useEffect(() => {
-  if (userData) {
-    axios
-      .get(`http://localhost:1671/getUser/${userData}`)
-      .then((response) => {
-        setCartItems(response.data);
-        console.log(setCartItems);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-}, [userData]);
-console.log(cartItems);
-const dob = new Date(cartItems.dob);
-const today = new Date();
-const age = today.getFullYear() - dob.getFullYear();
-
-
+  useEffect(() => {
+    if (userData) {
+      axios
+        .get(`http://52.62.90.166:1671/getUser/${userData}`)
+        .then((response) => {
+          setCartItems(response.data);
+          console.log(setCartItems);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [userData]);
+  console.log(cartItems);
+  const dob = new Date(cartItems.dob);
+  const today = new Date();
+  const age = today.getFullYear() - dob.getFullYear();
 
   const person = {
     profile: prof,
     nic: cartItems.nic,
-    name: cartItems.firstname + cartItems.middleName +" "+ cartItems.lastName,
+    name: cartItems.firstname + cartItems.middleName + ' ' + cartItems.lastName,
     age: age,
     mobile: cartItems.mobileNo,
     Special: 'Shoud wear contact lensces',
@@ -89,10 +83,16 @@ const age = today.getFullYear() - dob.getFullYear();
         {activeButtonIndex === 0 && <Home person={person} />}
         {activeButtonIndex === 0 && <Candrive />}
         {activeButtonIndex === 1 && <Fine />}
-        {activeButtonIndex === 2 && <Complain refresh={refresh} usernic={usernic}/>}
+        {activeButtonIndex === 2 && (
+          <Complain refresh={refresh} usernic={usernic} />
+        )}
         {activeButtonIndex === 2 && <CForm setRefresh={setRefresh} />}
         {activeButtonIndex === 3 && (
-          <Vehicles setDownload={setDownload} refresh={refresh} usernic={usernic}/>
+          <Vehicles
+            setDownload={setDownload}
+            refresh={refresh}
+            usernic={usernic}
+          />
         )}
         {activeButtonIndex === 3 && (
           <Vehibutton download={download} setRefresh={setRefresh} />
