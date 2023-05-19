@@ -27,7 +27,7 @@ const RegistrationForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:1670/register",
+        "http://13.239.53.12:1670/register",
         formData
       );
       console.log(response.data); // Handle the response data as needed
