@@ -10,20 +10,54 @@ import Candrive from '../Components/Candrive';
 import CForm from '../Components/CForm';
 import Vehibutton from '../Components/Vehibutton';
 import prof from '../assets/profilepic.png';
+import axios from 'axios';
 
 function Homepage() {
   const [download, setDownload] = useState({});
   const [refresh, setRefresh] = useState(false);
+  const [userData, setUserData] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    console.log(download);
-  }, [download]);
+    const cookieValue = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("userData="))
+      ?.split("=")[1];
+
+    if (cookieValue) {
+      const userDataObj = JSON.parse(cookieValue);
+      setUserData(userDataObj.customerId); // assuming userDataObj has an 'id' property
+    }
+  }, []);
+  console.log(userData);
+
+ 
+useEffect(() => {
+  if (userData) {
+    axios
+      .get(`http://localhost:1671/getUser/${userData}`)
+      .then((response) => {
+        setCartItems(response.data);
+        console.log(setCartItems);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+}, [userData]);
+console.log(cartItems);
+const dob = new Date(cartItems.dob);
+const today = new Date();
+const age = today.getFullYear() - dob.getFullYear();
+
+
+
   const person = {
     profile: prof,
-    nic: '200026401824',
-    name: 'Asgard Wala Ordin Godlage  Kris Hemsworth God ',
-    age: 32,
-    mobile: '0763441171',
+    nic: cartItems.nic,
+    name: cartItems.firstname,
+    age: age,
+    mobile: cartItems.mobileNo,
     Special: 'Shoud wear contact lensces',
   };
   const text = person.nic;
