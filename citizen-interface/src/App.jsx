@@ -5,12 +5,6 @@ import Login from './Components/CitizenLogin/CitizenLogin';
 import ForgetPassword from './Components/CitizenPassReset/forgetPassword';
 import ResetPassword from './Components/CitizenPassReset/resetPassword';
 
-
-
-
-
-
-
 function App() {
   const router = createBrowserRouter([
     {
@@ -23,15 +17,12 @@ function App() {
     },
     {
       path: '/forgetPassword',
-      element:<ForgetPassword/>
+      element: <ForgetPassword />,
     },
     {
       path: '/resetPassword/:token',
-      element:<ResetPassword/>
-    }
-
-  
-    
+      element: <ResetPassword />,
+    },
   ]);
   return <RouterProvider router={router} />;
 }
