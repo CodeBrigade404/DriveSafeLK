@@ -20,6 +20,7 @@ import Form from "./components/Vehicle/AddVehicleForm";
 import CitizenAll from "./components/CitizenAllView/citizenAllView";
 import ResetPassword from "./components/UserProfile/resetPassword";
 import ForgetPassword from "./components/UserProfile/forgetPassword";
+import AddFines from "./components/PayFine/AddFine";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path='/analytics' element={<Analytics />} />
           <Route path='/recognitions' element={<Recognition />} />
           <Route path='/payfine' element={<Payfine />} />
+          <Route path='/addfine' element={<AddFines />} />
           <Route path='/reports' element={<Reports />} />
           <Route path='/licenses' element={<Licenses />} />
           <Route path='/emergency' element={<Emergency />} />
