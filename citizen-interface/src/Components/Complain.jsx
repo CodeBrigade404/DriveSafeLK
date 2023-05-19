@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-function Complain({ refresh }) {
+function Complain({ refresh, usernic }) {
   const [complain, setComplain] = useState([]);
 
   useEffect(() => {
     const getComplain = async () => {
       const response = await fetch(
-        'http://3.26.255.165:5300/api/complaints/nic/200026401824'
+        `http://3.26.255.165:5300/api/complaints/nic/${usernic}`
       );
       const data = await response.json();
       setComplain(data);

@@ -13,7 +13,7 @@ const ResetPassword = () => {
   const resetPassword = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:1671/resetPassword/${token}`,
+        `http://52.62.90.166:1671/resetPassword/${token}`,
         {
           newPassword: newPassword,
         }

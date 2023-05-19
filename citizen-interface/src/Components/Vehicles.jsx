@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Vehicles({ setDownload, refresh }) {
+function Vehicles({ setDownload, refresh ,usernic }) {
   const [vehicle, setVehicle] = useState([]);
   const [numberplates, setNumberplates] = useState([]);
   const [activeVehicle, setActiveVehicle] = useState(0);
@@ -9,7 +9,7 @@ function Vehicles({ setDownload, refresh }) {
   const getVehicle = async () => {
     try {
       const response = await axios.get(
-        'http://3.26.196.154:5200/api/vehicles/search_nic/200026401824'
+        `http://3.26.196.154:5200/api/vehicles/search_nic/${usernic}`
       );
       setVehicle(response.data);
     } catch (error) {

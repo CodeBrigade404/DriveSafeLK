@@ -25,7 +25,7 @@ const ForgetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:1671/forgetPassword', { email });
+      const res = await axios.post('http://52.62.90.166:1671/forgetPassword', { email });
       setMessage(res.data.message);
     } catch (err) {
       setMessage(err.response.data.message);
