@@ -49,8 +49,12 @@ function Homepage() {
         {activeButtonIndex === 1 && <Fine />}
         {activeButtonIndex === 2 && <Complain refresh={refresh} />}
         {activeButtonIndex === 2 && <CForm setRefresh={setRefresh} />}
-        {activeButtonIndex === 3 && <Vehicles setDownload={setDownload} />}
-        {activeButtonIndex === 3 && <Vehibutton download={download} />}
+        {activeButtonIndex === 3 && (
+          <Vehicles setDownload={setDownload} refresh={refresh} />
+        )}
+        {activeButtonIndex === 3 && (
+          <Vehibutton download={download} setRefresh={setRefresh} />
+        )}
       </div>
     </div>
   );
