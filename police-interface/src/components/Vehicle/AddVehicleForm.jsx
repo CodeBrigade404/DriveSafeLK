@@ -28,7 +28,7 @@ const Form = () => {
   const handleFormSubmit = (values) => {
     console.log(values);
     console.log("res");
-    const res = axios
+    axios
       //http://ec2-52-62-234-207.ap-southeast-2.compute.amazonaws.com:5200/api/vehicles
       .post("http://3.26.196.154:5200/api/vehicles/add", values)
       .then((response) => {

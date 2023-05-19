@@ -13,6 +13,7 @@ import prof from '../assets/profilepic.png';
 
 function Homepage() {
   const [download, setDownload] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     console.log(download);
@@ -46,8 +47,8 @@ function Homepage() {
         {activeButtonIndex === 0 && <Home person={person} />}
         {activeButtonIndex === 0 && <Candrive />}
         {activeButtonIndex === 1 && <Fine />}
-        {activeButtonIndex === 2 && <Complain />}
-        {activeButtonIndex === 2 && <CForm />}
+        {activeButtonIndex === 2 && <Complain refresh={refresh} />}
+        {activeButtonIndex === 2 && <CForm setRefresh={setRefresh} />}
         {activeButtonIndex === 3 && <Vehicles setDownload={setDownload} />}
         {activeButtonIndex === 3 && <Vehibutton download={download} />}
       </div>
