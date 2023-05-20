@@ -27,7 +27,7 @@ export default function PayFine() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await Axios.get("http://localhost:5000/driveSafe/payfine");
+        const response = await Axios.get("http://3.27.9.143:4008/driveSafe/payfine/");
         console.log("Fines:", response.data);
         setFines(response.data);
       } catch (error) {

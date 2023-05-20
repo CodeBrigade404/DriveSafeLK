@@ -9,7 +9,6 @@
     "@mui/material": "^5.12.2",
     "@mui/x-data-grid": "^5.17.2",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.4.7",
     "axios": "^1.4.0",
@@ -58,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^14.0.0",
     "@types/bootstrap": "^5.2.6"
   }
 }
