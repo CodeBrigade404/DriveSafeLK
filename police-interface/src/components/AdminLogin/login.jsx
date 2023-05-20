@@ -26,7 +26,7 @@ const Login = () => {
       document.cookie = `userData=${JSON.stringify(decoded)}; path=/; expires=${expiryTime.toUTCString()};`;
       
 
-      window.location = "/";
+      window.location = "/dashboard";
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         setError(error.response.data.message);

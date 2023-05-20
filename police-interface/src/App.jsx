@@ -23,52 +23,49 @@ import ResetPassword from "./components/UserProfile/resetPassword";
 import ForgetPassword from "./components/UserProfile/forgetPassword";
 import RegistrationForm from "./components/AdminRegister/Register";
 import AddFines from "./components/PayFine/AddFine";
-// Create a custom LocationContext
+
+
 // Create a custom LocationContext
 const LocationContext = createContext();
 
 function App() {
   const location = window.location.pathname;
 
+  // Check if the current location is either '/login' or '/register'
+  const shouldDisplayNavbar = location !== '/login' && location !== '/register' && location !== '/' ;
+
   return (
     <div className="App">
       <BrowserRouter>
         <LocationContext.Provider value={location}>
+          {shouldDisplayNavbar && <Navbar />}
           <Routes>
+            <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/">
-              <Route index element={<Navigate to="/login" />} />
-              <Route
-                path="/"
-                element={
-                  location.indexOf("/login") === -1 && <Navbar />
-                }
-              />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/analytics" element={<Analytics />} />
-              <Route path="/recognitions" element={<Recognition />} />
-              <Route path="/payfine" element={<Payfine />} />
-              <Route path='/addfine' element={<AddFines />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/licenses" element={<Licenses />} />
-              <Route path="/emergency" element={<Emergency />} />
-              <Route path="/user" element={<UserData />} />
-              <Route path="/CitizenAdd" element={<CitizenAdd />} />
-              <Route path="/forgetPassword" element={<ForgetPassword />} />
-              <Route path="/resetPassword/:token" element={<ResetPassword />} />
-              <Route path="/user" element={<UserData />} />
-              <Route path="/CitizenAdd" element={<CitizenAdd />} />
-              <Route path="/CitizenAll" element={<CitizenAll />} />
-              <Route path={"/vehicles"}>
-                <Route index element={<VehicleTable />} />
-                <Route path=":id" element={<VehicleDetails />} />
-                <Route path="add" element={<Form />} />
-              </Route>
-              <Route path={"/complaints"}>
-                <Route index element={<ComplaintTable />} />
-                <Route path=":id" element={<ViewSingleComplaint />} />
-              </Route>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/recognitions" element={<Recognition />} />
+            <Route path="/payfine" element={<Payfine />} />
+            <Route path="/addfine" element={<AddFines />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/licenses" element={<Licenses />} />
+            <Route path="/emergency" element={<Emergency />} />
+            <Route path="/user" element={<UserData />} />
+            <Route path="/CitizenAdd" element={<CitizenAdd />} />
+            <Route path="/forgetPassword" element={<ForgetPassword />} />
+            <Route path="/resetPassword/:token" element={<ResetPassword />} />
+            <Route path="/user" element={<UserData />} />
+            <Route path="/CitizenAdd" element={<CitizenAdd />} />
+            <Route path="/CitizenAll" element={<CitizenAll />} />
+            <Route path={"/vehicles"}>
+              <Route index element={<VehicleTable />} />
+              <Route path=":id" element={<VehicleDetails />} />
+              <Route path="add" element={<Form />} />
+            </Route>
+            <Route path={"/complaints"}>
+              <Route index element={<ComplaintTable />} />
+              <Route path=":id" element={<ViewSingleComplaint />} />
             </Route>
           </Routes>
         </LocationContext.Provider>
@@ -79,5 +76,3 @@ function App() {
 }
 
 export default App;
-
-
