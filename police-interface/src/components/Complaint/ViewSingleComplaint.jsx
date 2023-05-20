@@ -138,7 +138,7 @@ export default function ViewSingleComplaint() {
                 align="right"
                 sx={{ m: "0 0 5px 0" }}
               >
-                Category- Car crash
+                Category- {complaint.category}
               </Typography>
             </Grid>
             <Grid item xs={3}>

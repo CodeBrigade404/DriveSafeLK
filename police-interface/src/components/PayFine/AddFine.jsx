@@ -24,7 +24,7 @@ const AddFine = () => {
 
     // Send the payload to your backend API
     axios
-      .post("http://localhost:5000/driveSafe/payfine/addfine", payload)
+      .post("http://3.27.9.143:4008/driveSafe/payfine/addfine", payload)
       .then((response) => {
         console.log(response.data);
         // Reset the form fields
