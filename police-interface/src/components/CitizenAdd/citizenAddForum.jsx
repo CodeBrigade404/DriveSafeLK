@@ -55,7 +55,7 @@ const CitizenAdd = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:1671/register";
+      const url = "http://52.62.90.166:1671/register";
       const payload = {
         ...data,
         ownvehicle: {

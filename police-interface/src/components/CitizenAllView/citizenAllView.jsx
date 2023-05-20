@@ -26,7 +26,7 @@ const CitizenAll = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:1671/getAllUser");
+        const response = await axios.get("http://52.62.90.166:1671/getAllUser");
         setUsers(response.data);
       } catch (error) {
         console.error(error);
