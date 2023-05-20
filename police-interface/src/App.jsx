@@ -38,7 +38,7 @@ function App() {
           <Routes>
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/recognitions" element={<Recognition />} />
