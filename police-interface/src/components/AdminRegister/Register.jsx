@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Register.css";
 import { Link } from "react-router-dom";
 
+
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     policeId: "",
@@ -17,7 +18,7 @@ const RegistrationForm = () => {
     station: "",
     address: "",
   });
-
+  const [error, setError] = useState("");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -29,10 +30,14 @@ const RegistrationForm = () => {
       const response = await axios.post(
         "http://13.239.53.12:1670/register",
         formData
+        
       );
-      console.log(response.data); // Handle the response data as needed
+      console.log(response.data);
+      window.location = "/login"
     } catch (error) {
-      console.error("Error registering customer:", error);
+      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+        setError(error.response.data.message);
+      }
     }
   };
 
@@ -42,57 +47,62 @@ const RegistrationForm = () => {
         <div className="left">
           <div className="form_container">
             <h1>Registration Form</h1>
-            <label htmlFor="policeId">Police ID:</label>
+            
             <input
               type="text"
               id="policeId"
               name="policeId"
               className="input"
+              placeholder="Enter Police ID"
               value={formData.policeId}
               onChange={handleChange}
             />
 
-            <label htmlFor="nic">NIC:</label>
+            
             <input
               type="text"
               id="nic"
               name="nic"
               className="input"
+              placeholder="Enter NIC"
               value={formData.nic}
               onChange={handleChange}
             />
 
-            <label htmlFor="firstname">First Name:</label>
+            
             <input
               type="text"
               id="firstname"
               name="firstname"
               className="input"
+              placeholder="Enter First Name"
               value={formData.firstname}
               onChange={handleChange}
             />
 
-            <label htmlFor="middlename">Middle Name:</label>
+           
             <input
               type="text"
               id="middlename"
               name="middlename"
               className="input"
+              placeholder="Enter Middle Name"
               value={formData.middlename}
               onChange={handleChange}
             />
 
-            <label htmlFor="lastname">Last Name:</label>
+            
             <input
               type="text"
               id="lastname"
               name="lastname"
               className="input"
+              placeholder="Enter Last Name"
               value={formData.lastname}
               onChange={handleChange}
             />
 
-            <label htmlFor="rank">Rank:</label>
+            
             <select
               id="rank"
               name="rank"
@@ -147,37 +157,40 @@ const RegistrationForm = () => {
               </option>
             </select>
 
-            <label htmlFor="email">Email:</label>
+            
             <input
               type="email"
               id="email"
               name="email"
               className="input"
+              placeholder="Enter Email"
               value={formData.email}
               onChange={handleChange}
             />
 
-            <label htmlFor="password">Password:</label>
+            
             <input
               type="password"
               id="password"
               name="password"
               className="input"
+              placeholder="Enter Password"
               value={formData.password}
               onChange={handleChange}
             />
 
-            <label htmlFor="phoneNo">Phone Number:</label>
+           
             <input
               type="text"
               id="phoneNo"
               name="phoneNo"
               className="input"
+              placeholder="Enter Phone Number"
               value={formData.phoneNo}
               onChange={handleChange}
             />
 
-            <label htmlFor="station">Station:</label>
+           
             <select
               id="station"
               name="station"
@@ -213,19 +226,22 @@ const RegistrationForm = () => {
               <option value="Nuwara Eliya">Nuwara Eliya</option>
             </select>
 
-            <label htmlFor="address">Address:</label>
+            
             <input
               type="text"
               id="address"
               name="address"
               className="input"
+              placeholder="Enter Address"
               value={formData.address}
               onChange={handleChange}
             />
+ {error && <div className="error_msg">{error}</div>}
 
             <button type="submit" className="green_btn">
               Register
             </button>
+         
           </div>
         </div>
         <div className="right">
