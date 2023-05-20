@@ -23,27 +23,31 @@ import ResetPassword from "./components/UserProfile/resetPassword";
 import ForgetPassword from "./components/UserProfile/forgetPassword";
 import RegistrationForm from "./components/AdminRegister/Register";
 import AddFines from "./components/PayFine/AddFine";
+
+
 // Create a custom LocationContext
 const LocationContext = createContext();
 
-
 function App() {
   const location = window.location.pathname;
+
+  // Check if the current location is either '/login' or '/register'
+  const shouldDisplayNavbar = location !== '/login' && location !== '/register' && location !== '/' ;
 
   return (
     <div className="App">
       <BrowserRouter>
         <LocationContext.Provider value={location}>
-        {location !== "/login" && <Navbar />} {/* Render Navbar for all routes except the login page */}
+          {shouldDisplayNavbar && <Navbar />}
           <Routes>
+            <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/recognitions" element={<Recognition />} />
             <Route path="/payfine" element={<Payfine />} />
-            <Route path='/addfine' element={<AddFines />} />
+            <Route path="/addfine" element={<AddFines />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/licenses" element={<Licenses />} />
             <Route path="/emergency" element={<Emergency />} />
